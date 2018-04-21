@@ -1,0 +1,23 @@
+---
+title: "Mapa de Relaciones. Universidad Pública de Navarra"
+---
+```{r, out.width='15%', echo=FALSE}
+knitr::include_graphics("images/upna.png")
+
+```
+
+## DEMO MAPA DE RELACIONES
+
+*Abril, 2018*
+
+Presentamos los primeros datos elaborados a partir de los datos proporcionados por la FUS, datos OTRI y datos del Consejo Social. Esta es la primera aproximación, con el objetivo de tener una idea sobre la utilidad del proyecto antes de invertir mayores esfuerzos.
+
+Se han utilizados:
+
+- datos de contratos OTRI
+- datos de la Fundación Universidad Sociedad
+- datos del Consejo Social
+
+Se han elaborado cuatro mapas, uno general y uno para cada uno de estos casos: general UPNA, mapa OTRI, mapa FUS, mapa CS.
+
+Para ver los mapas, se recomienda utilizar Google Chrome, Safari o IE, en Mozilla Firefox tarda más tiempo en cargar.

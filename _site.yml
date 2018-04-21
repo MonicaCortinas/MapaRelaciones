@@ -1,0 +1,24 @@
+name: Mapas de Relaciones UPNA
+lang: es-ES
+navbar:
+  title: Mapa 2016
+  left:
+  - text: Inicio
+    href: index.html
+  - text: Mapa OTRI
+    href: otri.html
+  - text: Mapa FUS
+    href: mapafus.html
+  - text: Mapa CS
+    href: mapacs.html
+  - text: General
+    href: mapageneral.html
+output:
+  html_document:
+    code_folding: hide
+    theme: yeti
+    highlight: textmate
+    lib_dir: site_libs
+    self_contained: no
+output_dir: _site
+
