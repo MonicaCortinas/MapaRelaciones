@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+
+
+<title>Mapa para relaciones OTRI</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/yeti.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<script src="site_libs/navigation-1.1/codefolding.js"></script>
+<link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<script src="site_libs/htmlwidgets-1.2/htmlwidgets.js"></script>
+<script src="site_libs/plotly-binding-4.7.1.9000/plotly.js"></script>
+<script src="site_libs/typedarray-0.1/typedarray.min.js"></script>
+<link href="site_libs/crosstalk-1.0.0/css/crosstalk.css" rel="stylesheet" />
+<script src="site_libs/crosstalk-1.0.0/js/crosstalk.min.js"></script>
+<link href="site_libs/plotlyjs-1.30.0/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="site_libs/plotlyjs-1.30.0/plotly-latest.min.js"></script>
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 45px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 50px;
+  margin-top: -50px;
+}
+
+.section h2 {
+  padding-top: 50px;
+  margin-top: -50px;
+}
+.section h3 {
+  padding-top: 50px;
+  margin-top: -50px;
+}
+.section h4 {
+  padding-top: 50px;
+  margin-top: -50px;
+}
+.section h5 {
+  padding-top: 50px;
+  margin-top: -50px;
+}
+.section h6 {
+  padding-top: 50px;
+  margin-top: -50px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+
+<div class="container-fluid main-container">
+
+<!-- tabsets -->
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+</script>
+
+<!-- code folding -->
+<style type="text/css">
+.code-folding-btn { margin-bottom: 4px; }
+</style>
+<script>
+$(document).ready(function () {
+  window.initializeCodeFolding("hide" === "show");
+});
+</script>
+
+
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Mapa 2016</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Inicio</a>
+</li>
+<li>
+  <a href="otri.html">Mapa OTRI</a>
+</li>
+<li>
+  <a href="mapafus.html">Mapa FUS</a>
+</li>
+<li>
+  <a href="mapacs.html">Mapa CS</a>
+</li>
+<li>
+  <a href="mapageneral.html">General</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+<div class="btn-group pull-right">
+<button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span>Code</span> <span class="caret"></span></button>
+<ul class="dropdown-menu" style="min-width: 50px;">
+<li><a id="rmd-show-all-code" href="#">Show All Code</a></li>
+<li><a id="rmd-hide-all-code" href="#">Hide All Code</a></li>
+</ul>
+</div>
+
+
+
+<h1 class="title toc-ignore">Mapa para relaciones OTRI</h1>
+
+</div>
+
+
+<p>Este mapa se ha elaborado uniendo los datos proporcionados por la OTRI. Se ha utilizado el nombre de la empresa, el NIF, el tipo de relación (acuerdo marco, servicios, asesoría, formación o I+D) y los ingresos.</p>
+<p>A partir de los datos disponibles, se ha completado manualmente el código <a href="https://www.cnae.com.es/lista-actividades.php" target="_blank">CNAE</a>. En muchos casos el código CNAE es una aproximación, habría que depurar bien la base y tratar de completarla con datos de facturación o trabajadores de las entidades.</p>
+<p>Con este código, se ha realizado una agrupación por sectores, realizada ad-hoc.</p>
+<pre class="r"><code>library(readr)
+
+# compute new cnae (cs$CNAE, fus$CNAE, otri$CNAE)
+
+cnae2009 &lt;- read_csv(&quot;data/cnae2009.csv&quot;, 
+                    col_types = cols(CODINTEGR = col_skip(), 
+                     COD_CNAE2009 = col_character(), X4 = col_skip(), 
+                     X5 = col_skip()))
+
+#newcodes
+# cuatro cifras
+
+cnae4d&lt;- cnae2009[which(nchar(cnae2009$COD_CNAE2009)==4),]
+
+cnae4d$grupocnae &lt;- 
+      ifelse (cnae4d$COD_CNAE2009 &lt; 1000,
+            paste(&quot;0&quot;,cnae4d$COD_CNAE2009, sep=&quot;&quot;),
+      (ifelse((cnae4d$COD_CNAE2009 &gt;= 1000) &amp; (cnae4d$COD_CNAE2009 &lt; 1200), 
+            paste(&quot;1&quot;,cnae4d$COD_CNAE2009, sep=&quot;&quot;),
+      ifelse((cnae4d$COD_CNAE2009 &gt;= 1200) &amp; (cnae4d$COD_CNAE2009 &lt; 2900), 
+            paste(&quot;3&quot;,cnae4d$COD_CNAE2009, sep=&quot;&quot;),
+      ifelse((cnae4d$COD_CNAE2009 &gt;= 2900) &amp; (cnae4d$COD_CNAE2009 &lt; 3000), 
+            paste(&quot;2&quot;,cnae4d$COD_CNAE2009, sep=&quot;&quot;),
+      ifelse((cnae4d$COD_CNAE2009 &gt;= 3000) &amp; (cnae4d$COD_CNAE2009 &lt; 3500), 
+            paste(&quot;3&quot;,cnae4d$COD_CNAE2009, sep=&quot;&quot;),
+      ifelse((cnae4d$COD_CNAE2009 &gt;= 4110) &amp; (cnae4d$COD_CNAE2009 &lt; 4400), 
+            paste(&quot;3&quot;,cnae4d$COD_CNAE2009, sep=&quot;&quot;),
+      ifelse((cnae4d$COD_CNAE2009 &gt;= 3500) &amp; (cnae4d$COD_CNAE2009 &lt; 4000), 
+            paste(&quot;4&quot;,cnae4d$COD_CNAE2009, sep=&quot;&quot;), 
+      ifelse((cnae4d$COD_CNAE2009 &gt;= 4500) &amp; (cnae4d$COD_CNAE2009 &lt;= 5630), 
+            paste(&quot;5&quot;,cnae4d$COD_CNAE2009, sep=&quot;&quot;),
+      ifelse((cnae4d$COD_CNAE2009 &gt;= 5800) &amp; (cnae4d$COD_CNAE2009 &lt;= 8299), 
+            paste(&quot;6&quot;,cnae4d$COD_CNAE2009, sep=&quot;&quot;),       
+      ifelse((cnae4d$COD_CNAE2009 &gt;= 9000) &amp; (cnae4d$COD_CNAE2009 &lt; 9330), 
+            paste(&quot;6&quot;,cnae4d$COD_CNAE2009, sep=&quot;&quot;), 
+      ifelse((cnae4d$COD_CNAE2009 &gt;= 8400) &amp; (cnae4d$COD_CNAE2009 &lt;= 8899), 
+            paste(&quot;7&quot;,cnae4d$COD_CNAE2009, sep=&quot;&quot;),       
+      ifelse((cnae4d$COD_CNAE2009 &gt;=9400), 
+            paste(&quot;7&quot;,cnae4d$COD_CNAE2009, sep=&quot;&quot;),       0
+                    )))))))))))))
+
+cnae4d$nombregrupo &lt;- 
+      ifelse (cnae4d$COD_CNAE2009 &lt; 1000,
+            paste(&quot;Sector primario y extracción&quot;),
+      ifelse((cnae4d$COD_CNAE2009 &gt;= 1000) &amp; (cnae4d$COD_CNAE2009 &lt; 1200), 
+            paste(&quot;Sector Industria-Alimentación&quot;),
+      ifelse((cnae4d$COD_CNAE2009 &gt;= 1200) &amp; (cnae4d$COD_CNAE2009 &lt; 2900), 
+            paste(&quot;Otra Industria y construcción&quot;),
+      ifelse((cnae4d$COD_CNAE2009 &gt;= 2900) &amp; (cnae4d$COD_CNAE2009 &lt; 3000), 
+            paste(&quot;Sector Industria_Motor&quot;),
+      ifelse((cnae4d$COD_CNAE2009 &gt;= 3000) &amp; (cnae4d$COD_CNAE2009 &lt; 3500), 
+            paste(&quot;Otra Industria y construcción&quot;),
+      ifelse((cnae4d$COD_CNAE2009 &gt;= 4110) &amp; (cnae4d$COD_CNAE2009 &lt;= 4400), 
+            paste(&quot;Otra Industria y construcción&quot;),
+      ifelse((cnae4d$COD_CNAE2009 &gt;= 3500) &amp; (cnae4d$COD_CNAE2009 &lt;= 4000), 
+            paste(&quot;Suministros y Energía&quot;), 
+      ifelse((cnae4d$COD_CNAE2009 &gt;= 4500) &amp; (cnae4d$COD_CNAE2009 &lt;= 5630), 
+            paste(&quot;Comercio, Transporte, Hostelería&quot;),
+      ifelse((cnae4d$COD_CNAE2009 &gt;= 5800) &amp; (cnae4d$COD_CNAE2009 &lt;= 8299), 
+            paste(&quot;Servicios: Información, Artístico, Informática, Consultoría, Financieros&quot;),       
+      ifelse((cnae4d$COD_CNAE2009 &gt;= 9000) &amp; (cnae4d$COD_CNAE2009 &lt; 9330), 
+            paste(&quot;Servicios: Información, Artístico, Informática, Consultoría, Financieros&quot;), 
+      ifelse((cnae4d$COD_CNAE2009 &gt;= 8400) &amp; (cnae4d$COD_CNAE2009 &lt;= 8899), 
+            paste(&quot;Admon. Pública, Educación, Asociaciones, Extraterrit&quot;),       
+      ifelse((cnae4d$COD_CNAE2009 &gt;=9400), 
+            paste(&quot;Admon. Pública, Educación, Asociaciones, Extraterrit&quot;), 0
+            ))))))))))))
+rm(cnae2009)
+
+# Mapa OTRI
+library(dplyr)
+library(tidyverse)
+otri &lt;- read_csv(&quot;data/Otriconcnae.csv&quot;, 
+                 locale = locale(asciify = TRUE), na = &quot;empty&quot;)
+
+# Hay algunos códigos cnae de 3 cifras incorrectos
+# Los corregimos:
+cnae3&lt;- otri[which(nchar(otri$CNAE)==3),] # Localiza códigos de 3 cifras
+otri[which(otri$CNAE==&quot;121&quot;),6]&lt;-&quot;0121&quot;
+rm(cnae3)
+names(otri)&lt;-gsub(&quot; &quot;, &quot;&quot;, names(otri)) # Quitar espacios en blanco
+length(table(otri$CIF)) #Comprobamos que cada fila es una empresa: no lo es</code></pre>
+<pre><code>## [1] 100</code></pre>
+<pre class="r"><code>ingresos &lt;- aggregate(formula = otri$ImportesinIVA ~ otri$CIF+otri$Tipocontrato, FUN = sum)
+nombre &lt;- aggregate(formula = otri$Nombreentidad ~ otri$CIF+otri$Tipocontrato, FUN = last)
+caracter &lt;- aggregate(formula = otri$Caracter ~ otri$CIF+otri$Tipocontrato, FUN = last)
+cnae &lt;- aggregate(formula = otri$CNAE ~ otri$CIF+otri$Tipocontrato, FUN = last)
+ambito &lt;- aggregate(formula = otri$Ambito ~ otri$CIF+otri$Tipocontrato, FUN = last)
+
+otri_empresa &lt;- cbind.data.frame(nombre[,1:3], cnae[,3], ingresos[,3], 
+                                 caracter[,3],ambito[,3], stringsAsFactors = FALSE )
+names(otri_empresa)&lt;- c(&quot;cif&quot;, &quot;tipo&quot;, &quot;nombre&quot;, &quot;cnae&quot;, &quot;ingresos&quot;, &quot;caracter&quot;, &quot;ambito&quot;)
+
+rm(ingresos, nombre, caracter, cnae, ambito)
+
+
+# Completa los códigos
+for (i in 1:length(otri_empresa$cif)) {
+      otri_empresa[i, 8]&lt;- cnae4d[grep(as.numeric(otri_empresa[i,4]),cnae4d$grupocnae),3]
+}
+
+
+for (i in 1:length(otri_empresa$cif)) {
+      otri_empresa[i, 9]&lt;- cnae4d[grep(as.numeric(otri_empresa[i,4]),cnae4d$grupocnae),4]
+}
+
+otri_empresa$grupocnae &lt;- as.numeric(otri_empresa$grupocnae)
+
+# Variable X: grupocnae
+# Variable Y: ingresos
+# facets: tipo
+# size: ambito
+# https://plot.ly/r/getting-started/</code></pre>
+<p>Se ha realizado un gráfico de dispersión con tres indicadores:</p>
+<ul>
+<li>Eje horizontal: es el sector con esta recodificación</li>
+<li>Eje vertical: son los ingresos que proporciona cada relación</li>
+<li>Eje z: El tamaño del círculo se corresponde con el número de contactos</li>
+</ul>
+<p>Se incluyen otros datos como el nombre y el tipo de relación. La herramienta permite hacer zoom sobre el mapa seleccionando cualquier cuadrante. “Reset zoom” devuelve el mapa a su tamaño original.</p>
+<p>También se puede seleccionar los tipos de relación pulsando sobre la leyenda del mapa.</p>
+<pre class="r"><code>library(devtools)
+# devtools::install_github(&quot;ropensci/plotly&quot;)
+library(plotly)
+library(&quot;ggsci&quot;)
+Sys.setenv(&quot;plotly_username&quot;=&quot;mcortinas&quot;)
+Sys.setenv(&quot;plotly_api_key&quot;=&quot;yJb8VBxhRqDRAOesNWRT&quot;)
+
+p &lt;- ggplot(otri_empresa, aes(x = grupocnae, y = ingresos)) +
+      geom_point(aes(size = ingresos, color=tipo, alpha=3/4, text = paste(&quot;Nombre:&quot;, otri_empresa$nombre))) +
+      labs( title=&quot;Mapa de Relaciones OTRI&quot; , subtitle = NULL) +
+      scale_y_continuous(name=&quot;Ingresos&quot;,breaks=c(0, 5000,10000,20000,50000, 100000, 150000),
+                         labels=paste(c(0, 5000,10000,20000,50000, 120000, 150000),&quot;\U20AC&quot;, sep=&quot;&quot;))+
+      scale_x_continuous(name=&quot;Sector&quot;, limits=c(0,80000), breaks=c(500,12000,22000,32000, 43000,54000,66000,78000),
+                         labels=c(&quot;Sector primario y extracción&quot;, &quot;Sector Industria-Alimentación&quot;, &quot;Sector Industria_Motor&quot;,
+                                  &quot;Otra Industria y construcción&quot;, &quot;Suministros y Energía&quot;, &quot;Comercio, Transporte, Hostelería&quot;,
+                                  &quot;Servicios: Banca, Informática, Consultoría...&quot;,
+                                  &quot;Admon. Pública, Educación...&quot;))+
+      scale_color_lancet()+
+      theme_bw()
+
+gg &lt;- ggplotly(p)
+l &lt;- list(
+      font = list(
+            family = &quot;sans-serif&quot;,
+            size = 16,
+            color = &quot;#000&quot;),
+      x = 0.05, 
+      y = 0.95, 
+      orientation = &#39;h&#39;,
+      bordercolor = &quot;#E2E2E2&quot;,
+      borderwidth = 2)
+
+l2 &lt;- list(source = &quot;http://www.unavarra.es/css/bitmaps/upna30-iberus.png?raw=true&quot;,
+           xref = &quot;x&quot;,
+           yref = &quot;y&quot;,
+           x = 0.9,
+           y = 3.1,
+           sizex = 2,
+           sizey = 2,
+           sizing = &quot;stretch&quot;,
+           opacity = 0.4,
+           layer = &quot;below&quot;
+)
+layout(gg, legend = l, images = l2)</code></pre>
+<div id="1ec022a65171" style="width:672px;height:480px;" class="plotly html-widget"></div>
+<script type="application/json" data-for="1ec022a65171">{"x":{"data":[{"x":[67120],"y":[0],"text":"ingresos:      0.00<br />tipo: ACU<br />3/4: 0.75<br />Nombre: SGS ICS IBÉRICA S.A.<br />grupocnae: 67120<br />ingresos:      0.00","type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(0,70,139,1)","opacity":0.55,"size":3.77952755905512,"symbol":"circle","line":{"width":1.88976377952756,"color":"rgba(0,70,139,1)"}},"hoveron":"points","name":"ACU","legendgroup":"ACU","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[78543,67010,54677,78411,67120,54631,67112,32711,68030,67022,32896,66491,68299,78731,66512,67219,67219,67219,79499,79499,65819,78411,78411,78411,78543,78411,78411,78559,78411,78411],"y":[8744.58,4281.91,59400,12550,430,2170.12,4000,10900,1581.18,6237.19,470,8000,1550,3800,2000,350,3272.72,600,7140,2066.12,19166.66,12366.12,3300,24000,14122.32,2500,5994.25,1360,12000,21996],"text":["ingresos:   8744.58<br />tipo: ASE<br />3/4: 0.75<br />Nombre: Universidad de la República de Uruguay<br />grupocnae: 78543<br />ingresos:   8744.58","ingresos:   4281.91<br />tipo: ASE<br />3/4: 0.75<br />Nombre: Corporación Patricio Echeverria S.A.<br />grupocnae: 67010<br />ingresos:   4281.91","ingresos:  59400.00<br />tipo: ASE<br />3/4: 0.75<br />Nombre: CHATARRAS IRUÑA, S.A.<br />grupocnae: 54677<br />ingresos:  59400.00","ingresos:  12550.00<br />tipo: ASE<br />3/4: 0.75<br />Nombre: Instituto Navarro de Tecnologías e Infraestructuras Agroalimentarias, S.A. (INTIA, S.A.)<br />grupocnae: 78411<br />ingresos:  12550.00","ingresos:    430.00<br />tipo: ASE<br />3/4: 0.75<br />Nombre: SGS ICS IBÉRICA S.A.<br />grupocnae: 67120<br />ingresos:    430.00","ingresos:   2170.12<br />tipo: ASE<br />3/4: 0.75<br />Nombre: FLORETTE AGRÍCOLA S.L.<br />grupocnae: 54631<br />ingresos:   2170.12","ingresos:   4000.00<br />tipo: ASE<br />3/4: 0.75<br />Nombre: TESICNOR<br />grupocnae: 67112<br />ingresos:   4000.00","ingresos:  10900.00<br />tipo: ASE<br />3/4: 0.75<br />Nombre: GAMESA INNOVATION AND TECHNOLOGY, S.L., UNIPERSONAL<br />grupocnae: 32711<br />ingresos:  10900.00","ingresos:   1581.18<br />tipo: ASE<br />3/4: 0.75<br />Nombre: ANTERAL, S.L.<br />grupocnae: 68030<br />ingresos:   1581.18","ingresos:   6237.19<br />tipo: ASE<br />3/4: 0.75<br />Nombre: CEIN-CENTRO EUROPEO DE EMPRESAS E INNOVACIÓN, S.L.<br />grupocnae: 67022<br />ingresos:   6237.19","ingresos:    470.00<br />tipo: ASE<br />3/4: 0.75<br />Nombre: Agil Packaging System, S.L.<br />grupocnae: 32896<br />ingresos:    470.00","ingresos:   8000.00<br />tipo: ASE<br />3/4: 0.75<br />Nombre: LUPICINIO RODRIGUEZ EUROPE, S.L.U.<br />grupocnae: 66491<br />ingresos:   8000.00","ingresos:   1550.00<br />tipo: ASE<br />3/4: 0.75<br />Nombre: MANAGING INNOVATION STRATEGIES S.L.L. (MAINSTRAT)<br />grupocnae: 68299<br />ingresos:   1550.00","ingresos:   3800.00<br />tipo: ASE<br />3/4: 0.75<br />Nombre: Casa de Misericordia de Pamplona<br />grupocnae: 78731<br />ingresos:   3800.00","ingresos:   2000.00<br />tipo: ASE<br />3/4: 0.75<br />Nombre: MUTUA NAVARRA<br />grupocnae: 66512<br />ingresos:   2000.00","ingresos:    350.00<br />tipo: ASE<br />3/4: 0.75<br />Nombre: Centro Nacional de Tecnología y Seguridad Alimentaria (CNTA)<br />grupocnae: 67219<br />ingresos:    350.00","ingresos:   3272.72<br />tipo: ASE<br />3/4: 0.75<br />Nombre: GAZ KALO<br />grupocnae: 67219<br />ingresos:   3272.72","ingresos:    600.00<br />tipo: ASE<br />3/4: 0.75<br />Nombre: FUNDACIÓN CETENA (CEMITEC)<br />grupocnae: 67219<br />ingresos:    600.00","ingresos:   7140.00<br />tipo: ASE<br />3/4: 0.75<br />Nombre: ANAME- Asociación Navarra de Mediación<br />grupocnae: 79499<br />ingresos:   7140.00","ingresos:   2066.12<br />tipo: ASE<br />3/4: 0.75<br />Nombre: Asociación  sociocultural de minorías étnicas gitanas UNGA<br />grupocnae: 79499<br />ingresos:   2066.12","ingresos:  19166.66<br />tipo: ASE<br />3/4: 0.75<br />Nombre: ELSEVIER B.V.<br />grupocnae: 65819<br />ingresos:  19166.66","ingresos:  12366.12<br />tipo: ASE<br />3/4: 0.75<br />Nombre: Ayuntamiento de Pamplona/Iruñako Udala<br />grupocnae: 78411<br />ingresos:  12366.12","ingresos:   3300.00<br />tipo: ASE<br />3/4: 0.75<br />Nombre: AYUNTAMIENTO DEL VALLE DE LA ULTZAMA<br />grupocnae: 78411<br />ingresos:   3300.00","ingresos:  24000.00<br />tipo: ASE<br />3/4: 0.75<br />Nombre: Ayuntamiento de Burlada<br />grupocnae: 78411<br />ingresos:  24000.00","ingresos:  14122.32<br />tipo: ASE<br />3/4: 0.75<br />Nombre: Consorcio Campus Iberus<br />grupocnae: 78543<br />ingresos:  14122.32","ingresos:   2500.00<br />tipo: ASE<br />3/4: 0.75<br />Nombre: Gobierno de Navarra - Departamento de Educación<br />grupocnae: 78411<br />ingresos:   2500.00","ingresos:   5994.25<br />tipo: ASE<br />3/4: 0.75<br />Nombre: Dpto. de Desarrollo Rural, Medio Ambiente y Administración Local - Gobierno de Navarra<br />grupocnae: 78411<br />ingresos:   5994.25","ingresos:   1360.00<br />tipo: ASE<br />3/4: 0.75<br />Nombre: CENTRO DE RECURSOS PARA LA ENSEÑANZA DEL EUSKERA-EIBZ<br />grupocnae: 78559<br />ingresos:   1360.00","ingresos:  12000.00<br />tipo: ASE<br />3/4: 0.75<br />Nombre: Dirección General de Política Económica y Empresarial y Trabajo<br />grupocnae: 78411<br />ingresos:  12000.00","ingresos:  21996.00<br />tipo: ASE<br />3/4: 0.75<br />Nombre: Gobierno de Navarra. Dpto. Relaciones Ciudadanas e Institucionales - DG Paz, Convivencia y Derechos Humanos<br />grupocnae: 78411<br />ingresos:  21996.00"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(237,0,0,1)","opacity":0.55,"size":[7.88079249802841,6.64942987735567,14.4686381457128,8.6927928067728,4.68898540813412,5.82263037528492,6.55334799430138,8.35843217414015,5.52349753508796,7.24324801657469,4.73034530043424,7.70230203816802,5.50621685513838,6.48311329223249,5.74091479861157,4.60003470900057,6.28853975840427,4.85382359416298,7.48545962204233,5.77307290408854,9.85138501113347,8.65666591527416,6.29897508594797,10.5739722635132,8.99149113192876,5.97242515797956,7.17512168538442,5.3969289113411,8.58392548397445,10.2841216938676],"symbol":"circle","line":{"width":1.88976377952756,"color":"rgba(237,0,0,1)"}},"hoveron":"points","name":"ASE","legendgroup":"ASE","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[78543,78543,78411,78812,66202,67219,67219,78411,78411,78411],"y":[16837.65,4227.79,2000,1890,2000,1080,4500,9668.48,1000,2322],"text":["ingresos:  16837.65<br />tipo: FOR<br />3/4: 0.75<br />Nombre: THE SCHOOL OF PUBLIC AND ENVIRONMENTAL AFFAIRS OF INDIANA UNIVERSITY BLOOMINGTON (SPEA)<br />grupocnae: 78543<br />ingresos:  16837.65","ingresos:   4227.79<br />tipo: FOR<br />3/4: 0.75<br />Nombre: Universidad Internacional de La Rioja, S.A. (UNIR)<br />grupocnae: 78543<br />ingresos:   4227.79","ingresos:   2000.00<br />tipo: FOR<br />3/4: 0.75<br />Nombre: Instituto Navarro de Tecnologías e Infraestructuras Agroalimentarias, S.A. (INTIA, S.A.)<br />grupocnae: 78411<br />ingresos:   2000.00","ingresos:   1890.00<br />tipo: FOR<br />3/4: 0.75<br />Nombre: Elkarkide, S.L.<br />grupocnae: 78812<br />ingresos:   1890.00","ingresos:   2000.00<br />tipo: FOR<br />3/4: 0.75<br />Nombre: Hiberus Tecnologías de la Información<br />grupocnae: 66202<br />ingresos:   2000.00","ingresos:   1080.00<br />tipo: FOR<br />3/4: 0.75<br />Nombre: GAZ KALO<br />grupocnae: 67219<br />ingresos:   1080.00","ingresos:   4500.00<br />tipo: FOR<br />3/4: 0.75<br />Nombre: CENER-Fundación CENER-CIEMAT<br />grupocnae: 67219<br />ingresos:   4500.00","ingresos:   9668.48<br />tipo: FOR<br />3/4: 0.75<br />Nombre: Ayuntamiento de Pamplona/Iruñako Udala<br />grupocnae: 78411<br />ingresos:   9668.48","ingresos:   1000.00<br />tipo: FOR<br />3/4: 0.75<br />Nombre: Instituto de Salud Pública y Laboral de Navarra<br />grupocnae: 78411<br />ingresos:   1000.00","ingresos:   2322.00<br />tipo: FOR<br />3/4: 0.75<br />Nombre: Dirección General de Cultura-Institución Príncipe de Viana<br />grupocnae: 78411<br />ingresos:   2322.00"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(66,181,64,1)","opacity":0.55,"size":[9.47053412341086,6.63123554144011,5.74091479861157,5.68621387536482,5.74091479861157,5.22084693653092,6.72160841838979,8.09201108749566,5.16643777667825,5.89291662119146],"symbol":"circle","line":{"width":1.88976377952756,"color":"rgba(66,181,64,1)"}},"hoveron":"points","name":"FOR","legendgroup":"FOR","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[67211,65829,43519,22910,32015,66622,32020,32829,54669,11021,32433,43519,67219,33320,67112,121,11039,66201,67211,67211,54776,32059,65829,121,68030,67490,66201,54619,67112,67219,43519,67220,67112,67219,67112,78411,79499,78411,67022,67120],"y":[100000,28260,30758.62,12000,11300,5000,26350,32298.85,15000,6000,5940,39335,45000,10000,185660,11500,70000,17241.38,25000,139860.05,4500,42753,5872,8000,6611.75,36782,56294,17826,50000,30000,17241.38,8070,2321.84,31950,23148.02,4500,16917.8,13500,63855,11000],"text":["ingresos: 100000.00<br />tipo: I+D<br />3/4: 0.75<br />Nombre: Arysta LifeScience Management Company<br />grupocnae: 67211<br />ingresos: 100000.00","ingresos:  28260.00<br />tipo: I+D<br />3/4: 0.75<br />Nombre: BERNAT CUNI SOLER (CUNICODE)<br />grupocnae: 65829<br />ingresos:  28260.00","ingresos:  30758.62<br />tipo: I+D<br />3/4: 0.75<br />Nombre: ACCIONA SOLAR, S.A.<br />grupocnae: 43519<br />ingresos:  30758.62","ingresos:  12000.00<br />tipo: I+D<br />3/4: 0.75<br />Nombre: GRUPO ANTOLIN INGENIERÍA, S.A.<br />grupocnae: 22910<br />ingresos:  12000.00","ingresos:  11300.00<br />tipo: I+D<br />3/4: 0.75<br />Nombre: AGROSTOCK, S.A.<br />grupocnae: 32015<br />ingresos:  11300.00","ingresos:   5000.00<br />tipo: I+D<br />3/4: 0.75<br />Nombre: AGROSEGURO, S.A.<br />grupocnae: 66622<br />ingresos:   5000.00","ingresos:  26350.00<br />tipo: I+D<br />3/4: 0.75<br />Nombre: Probelte, S.A.<br />grupocnae: 32020<br />ingresos:  26350.00","ingresos:  32298.85<br />tipo: I+D<br />3/4: 0.75<br />Nombre: JOFEMAR. S.A.U.<br />grupocnae: 32829<br />ingresos:  32298.85","ingresos:  15000.00<br />tipo: I+D<br />3/4: 0.75<br />Nombre: AZKOYEN, S.A.<br />grupocnae: 54669<br />ingresos:  15000.00","ingresos:   6000.00<br />tipo: I+D<br />3/4: 0.75<br />Nombre: BODEGAS OCHOA, S.A.<br />grupocnae: 11021<br />ingresos:   6000.00","ingresos:   5940.00<br />tipo: I+D<br />3/4: 0.75<br />Nombre: Eisenor, S.A.<br />grupocnae: 32433<br />ingresos:   5940.00","ingresos:  39335.00<br />tipo: I+D<br />3/4: 0.75<br />Nombre: ACCIONA ENERGÍA, S.A.<br />grupocnae: 43519<br />ingresos:  39335.00","ingresos:  45000.00<br />tipo: I+D<br />3/4: 0.75<br />Nombre: Seresco<br />grupocnae: 67219<br />ingresos:  45000.00","ingresos:  10000.00<br />tipo: I+D<br />3/4: 0.75<br />Nombre: Thales Alenia Space España S.A.<br />grupocnae: 33320<br />ingresos:  10000.00","ingresos: 185660.00<br />tipo: I+D<br />3/4: 0.75<br />Nombre: INGETEAM POWER TECHNOLOGY, S.A.<br />grupocnae: 67112<br />ingresos: 185660.00","ingresos:  11500.00<br />tipo: I+D<br />3/4: 0.75<br />Nombre: Viñedos Barón de Ley, S.L.<br />grupocnae:   121<br />ingresos:  11500.00","ingresos:  70000.00<br />tipo: I+D<br />3/4: 0.75<br />Nombre: GELAGRI IBÉRICA, S.L.<br />grupocnae: 11039<br />ingresos:  70000.00","ingresos:  17241.38<br />tipo: I+D<br />3/4: 0.75<br />Nombre: CyC (Consultoría y Comunicaciones del País Vasco, S.L.)<br />grupocnae: 66201<br />ingresos:  17241.38","ingresos:  25000.00<br />tipo: I+D<br />3/4: 0.75<br />Nombre: TAFCO Metawireless S.L.<br />grupocnae: 67211<br />ingresos:  25000.00","ingresos: 139860.05<br />tipo: I+D<br />3/4: 0.75<br />Nombre: HIPRA SCIENTIFIC, S.L.U.<br />grupocnae: 67211<br />ingresos: 139860.05","ingresos:   4500.00<br />tipo: I+D<br />3/4: 0.75<br />Nombre: EuroChem Agro Iberia S.L.<br />grupocnae: 54776<br />ingresos:   4500.00","ingresos:  42753.00<br />tipo: I+D<br />3/4: 0.75<br />Nombre: DAS-NANO, S.L.<br />grupocnae: 32059<br />ingresos:  42753.00","ingresos:   5872.00<br />tipo: I+D<br />3/4: 0.75<br />Nombre: NewMusicNow<br />grupocnae: 65829<br />ingresos:   5872.00","ingresos:   8000.00<br />tipo: I+D<br />3/4: 0.75<br />Nombre: Viticultura Viva S.L.<br />grupocnae:   121<br />ingresos:   8000.00","ingresos:   6611.75<br />tipo: I+D<br />3/4: 0.75<br />Nombre: FUVEX AGRO<br />grupocnae: 68030<br />ingresos:   6611.75","ingresos:  36782.00<br />tipo: I+D<br />3/4: 0.75<br />Nombre: Deneb Medical<br />grupocnae: 67490<br />ingresos:  36782.00","ingresos:  56294.00<br />tipo: I+D<br />3/4: 0.75<br />Nombre: NAUDIT HIGH PERFORMANCE COMPUTING AND NETWORKING S.L.<br />grupocnae: 66201<br />ingresos:  56294.00","ingresos:  17826.00<br />tipo: I+D<br />3/4: 0.75<br />Nombre: Avantpack, S.L.<br />grupocnae: 54619<br />ingresos:  17826.00","ingresos:  50000.00<br />tipo: I+D<br />3/4: 0.75<br />Nombre: Aurora Software and Testing S.L.<br />grupocnae: 67112<br />ingresos:  50000.00","ingresos:  30000.00<br />tipo: I+D<br />3/4: 0.75<br />Nombre: Tesat-Spacecom GmbH & Co. KG<br />grupocnae: 67219<br />ingresos:  30000.00","ingresos:  17241.38<br />tipo: I+D<br />3/4: 0.75<br />Nombre: SAS SOLANDES<br />grupocnae: 43519<br />ingresos:  17241.38","ingresos:   8070.00<br />tipo: I+D<br />3/4: 0.75<br />Nombre: Matchic Labs<br />grupocnae: 67220<br />ingresos:   8070.00","ingresos:   2321.84<br />tipo: I+D<br />3/4: 0.75<br />Nombre: AGROLIS CONSULTING<br />grupocnae: 67112<br />ingresos:   2321.84","ingresos:  31950.00<br />tipo: I+D<br />3/4: 0.75<br />Nombre: CENER-Fundación CENER-CIEMAT<br />grupocnae: 67219<br />ingresos:  31950.00","ingresos:  23148.02<br />tipo: I+D<br />3/4: 0.75<br />Nombre: Koppert B.V.<br />grupocnae: 67112<br />ingresos:  23148.02","ingresos:   4500.00<br />tipo: I+D<br />3/4: 0.75<br />Nombre: Ayuntamiento de Aranguren<br />grupocnae: 78411<br />ingresos:   4500.00","ingresos:  16917.80<br />tipo: I+D<br />3/4: 0.75<br />Nombre: Comunidad de Bardenas Reales<br />grupocnae: 79499<br />ingresos:  16917.80","ingresos:  13500.00<br />tipo: I+D<br />3/4: 0.75<br />Nombre: Ayuntamiento de Pamplona/Iruñako Udala<br />grupocnae: 78411<br />ingresos:  13500.00","ingresos:  63855.00<br />tipo: I+D<br />3/4: 0.75<br />Nombre: FNF-Federación Navarra de Fútbol<br />grupocnae: 67022<br />ingresos:  63855.00","ingresos:  11000.00<br />tipo: I+D<br />3/4: 0.75<br />Nombre: ESA/ESTEC-European Space Agency<br />grupocnae: 67120<br />ingresos:  11000.00"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(0,153,180,1)","opacity":0.55,"size":[17.6486297352864,11.1523610602528,11.4713946443744,8.58392548397445,8.44169180484762,6.88075308434946,10.8988499094298,11.6616264161805,9.1510077345944,7.17674991128416,7.15972112058081,12.4778985158484,13.0832041349381,8.165322756904,22.6771653543307,8.48276893549919,15.3832509538246,9.53835890106012,10.7140786471708,20.1814663660192,6.72160841838979,12.8479479560734,7.14031751926699,7.70230203816802,7.34573465356969,12.1908836248256,14.1854216659385,9.635180098256,13.5864637568374,11.375947673321,9.53835890106012,7.71942679769077,5.89284380722179,11.6189447860134,10.4522839845099,6.72160841838979,9.48406310892005,8.87536108739868,14.8622332990282,8.37938836882119],"symbol":"circle","line":{"width":1.88976377952756,"color":"rgba(0,153,180,1)"}},"hoveron":"points","name":"I+D","legendgroup":"I+D","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[66491,54532,54631,66622,34110,78411,32891,11012,32829,32711,67219,32442,66201,67022,33320,43516,161,66920,67490,66491,67022,67022,34121,54619,54621,79499,67022,79499,68299,79499,78543],"y":[4000,580,1400,7104.37,2925,6782,200,517.2,184,4000,124.2,620,115,3442.15,1500,14828,193,2650,4930,2000,1500,172.5,700,490,3440,15000,517.25,1500,1597.9,100,8000],"text":["ingresos:   4000.00<br />tipo: SER<br />3/4: 0.75<br />Nombre: Lupicinio Rodríguez Jiménez<br />grupocnae: 66491<br />ingresos:   4000.00","ingresos:    580.00<br />tipo: SER<br />3/4: 0.75<br />Nombre: Icer Brakes S.A.<br />grupocnae: 54532<br />ingresos:    580.00","ingresos:   1400.00<br />tipo: SER<br />3/4: 0.75<br />Nombre: Alavesa de Patatas, S.A.<br />grupocnae: 54631<br />ingresos:   1400.00","ingresos:   7104.37<br />tipo: SER<br />3/4: 0.75<br />Nombre: AGROSEGURO, S.A.<br />grupocnae: 66622<br />ingresos:   7104.37","ingresos:   2925.00<br />tipo: SER<br />3/4: 0.75<br />Nombre: NASUVINSA Navarra de Suelo y Vivienda, S.A.<br />grupocnae: 34110<br />ingresos:   2925.00","ingresos:   6782.00<br />tipo: SER<br />3/4: 0.75<br />Nombre: Instituto Navarro de Tecnologías e Infraestructuras Agroalimentarias, S.A. (INTIA, S.A.)<br />grupocnae: 78411<br />ingresos:   6782.00","ingresos:    200.00<br />tipo: SER<br />3/4: 0.75<br />Nombre: HANNA INSTRUMENTS S.L.<br />grupocnae: 32891<br />ingresos:    200.00","ingresos:    517.20<br />tipo: SER<br />3/4: 0.75<br />Nombre: AN AVICOLA MELIDA, S.L.<br />grupocnae: 11012<br />ingresos:    517.20","ingresos:    184.00<br />tipo: SER<br />3/4: 0.75<br />Nombre: WASSERLAB - Navarra de Tratamiento del Agua, S.L.<br />grupocnae: 32829<br />ingresos:    184.00","ingresos:   4000.00<br />tipo: SER<br />3/4: 0.75<br />Nombre: GAMESA INNOVATION AND TECHNOLOGY, S.L., UNIPERSONAL<br />grupocnae: 32711<br />ingresos:   4000.00","ingresos:    124.20<br />tipo: SER<br />3/4: 0.75<br />Nombre: Agricultura y Ensayo, S.L.<br />grupocnae: 67219<br />ingresos:    124.20","ingresos:    620.00<br />tipo: SER<br />3/4: 0.75<br />Nombre: IDALSA- Ibérica de Aleaciones Ligeras S.L.<br />grupocnae: 32442<br />ingresos:    620.00","ingresos:    115.00<br />tipo: SER<br />3/4: 0.75<br />Nombre: MAHEI ENGINEERING,S.L.<br />grupocnae: 66201<br />ingresos:    115.00","ingresos:   3442.15<br />tipo: SER<br />3/4: 0.75<br />Nombre: INSPIRIA CONSULTING S.L.<br />grupocnae: 67022<br />ingresos:   3442.15","ingresos:   1500.00<br />tipo: SER<br />3/4: 0.75<br />Nombre: Hielo Gel S.L.<br />grupocnae: 33320<br />ingresos:   1500.00","ingresos:  14828.00<br />tipo: SER<br />3/4: 0.75<br />Nombre: ALAZ-ARIMA<br />grupocnae: 43516<br />ingresos:  14828.00","ingresos:    193.00<br />tipo: SER<br />3/4: 0.75<br />Nombre: Métodos Servicios Agrícolas, S.L.<br />grupocnae:   161<br />ingresos:    193.00","ingresos:   2650.00<br />tipo: SER<br />3/4: 0.75<br />Nombre: AGENCIA DE CERTIFICACIÓN EN INNOVACIÓN ESPAÑOLA (ACIE)<br />grupocnae: 66920<br />ingresos:   2650.00","ingresos:   4930.00<br />tipo: SER<br />3/4: 0.75<br />Nombre: EQA Certificados I+D+I, S.L.U.<br />grupocnae: 67490<br />ingresos:   4930.00","ingresos:   2000.00<br />tipo: SER<br />3/4: 0.75<br />Nombre: LUPICINIO RODRIGUEZ EUROPE, S.L.U.<br />grupocnae: 66491<br />ingresos:   2000.00","ingresos:   1500.00<br />tipo: SER<br />3/4: 0.75<br />Nombre: DNV GL Business Assurance España S.L.U.<br />grupocnae: 67022<br />ingresos:   1500.00","ingresos:    172.50<br />tipo: SER<br />3/4: 0.75<br />Nombre: Field Trials Services S.L.L.<br />grupocnae: 67022<br />ingresos:    172.50","ingresos:    700.00<br />tipo: SER<br />3/4: 0.75<br />Nombre: Rehabilitación Energética, S.L.<br />grupocnae: 34121<br />ingresos:    700.00","ingresos:    490.00<br />tipo: SER<br />3/4: 0.75<br />Nombre: Avantpack, S.L.<br />grupocnae: 54619<br />ingresos:    490.00","ingresos:   3440.00<br />tipo: SER<br />3/4: 0.75<br />Nombre: COOPERATIVA AGRÍCOLA CAJA RURAL DE ARTAJONA<br />grupocnae: 54621<br />ingresos:   3440.00","ingresos:  15000.00<br />tipo: SER<br />3/4: 0.75<br />Nombre: ASOCIACIÓN GIFE<br />grupocnae: 79499<br />ingresos:  15000.00","ingresos:    517.25<br />tipo: SER<br />3/4: 0.75<br />Nombre: AIN - ASOCIACIÓN DE LA INDUSTRIA NAVARRA<br />grupocnae: 67022<br />ingresos:    517.25","ingresos:   1500.00<br />tipo: SER<br />3/4: 0.75<br />Nombre: Federación de Criadores de Betizu - Betizu-Hazleen Federakundea<br />grupocnae: 79499<br />ingresos:   1500.00","ingresos:   1597.90<br />tipo: SER<br />3/4: 0.75<br />Nombre: ENAC- Entidad Nacional de Acreditación<br />grupocnae: 68299<br />ingresos:   1597.90","ingresos:    100.00<br />tipo: SER<br />3/4: 0.75<br />Nombre: Bortzirietako Euskara Mankomunitatea<br />grupocnae: 79499<br />ingresos:    100.00","ingresos:   8000.00<br />tipo: SER<br />3/4: 0.75<br />Nombre: Universidad de Vigo<br />grupocnae: 78543<br />ingresos:   8000.00"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(146,94,159,1)","opacity":0.55,"size":[6.55334799430138,4.83576691261733,5.42054185894601,7.47620139367942,6.1515089794843,7.39135705568852,4.39977266411399,4.77694648761211,4.37444576445947,6.55334799430138,4.2683027405108,4.87158175646631,4.24985169669953,6.35266653740577,5.47813873516964,9.12012245517961,4.38882170040825,6.03725382061357,6.85896798908698,5.74091479861157,5.47813873516964,4.35555463452678,4.93989989853207,4.75036471139131,6.35186280820348,9.1510077345944,4.77699469888548,5.47813873516964,5.53269398894625,4.21810707884001,7.70230203816802],"symbol":"circle","line":{"width":1.88976377952756,"color":"rgba(146,94,159,1)"}},"hoveron":"points","name":"SER","legendgroup":"SER","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null}],"layout":{"margin":{"t":43.7625570776256,"r":7.30593607305936,"b":40.1826484018265,"l":66.4840182648402},"plot_bgcolor":"rgba(255,255,255,1)","paper_bgcolor":"rgba(255,255,255,1)","font":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187},"title":"Mapa de Relaciones OTRI","titlefont":{"color":"rgba(0,0,0,1)","family":"","size":17.5342465753425},"xaxis":{"domain":[0,1],"type":"linear","autorange":false,"range":[-4000,84000],"tickmode":"array","ticktext":["Sector primario y extracción","Sector Industria-Alimentación","Sector Industria_Motor","Otra Industria y construcción","Suministros y Energía","Comercio, Transporte, Hostelería","Servicios: Banca, Informática, Consultoría...","Admon. Pública, Educación..."],"tickvals":[500,12000,22000,32000,43000,54000,66000,78000],"categoryorder":"array","categoryarray":["Sector primario y extracción","Sector Industria-Alimentación","Sector Industria_Motor","Otra Industria y construcción","Suministros y Energía","Comercio, Transporte, Hostelería","Servicios: Banca, Informática, Consultoría...","Admon. Pública, Educación..."],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.65296803652968,"tickwidth":0.66417600664176,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.689497716895},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(235,235,235,1)","gridwidth":0.66417600664176,"zeroline":false,"anchor":"y","title":"Sector","titlefont":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187},"hoverformat":".2f"},"yaxis":{"domain":[0,1],"type":"linear","autorange":false,"range":[-9283,194943],"tickmode":"array","ticktext":["0€","5000€","10000€","20000€","50000€","120000€","150000€"],"tickvals":[0,5000,10000,20000,50000,100000,150000],"categoryorder":"array","categoryarray":["0€","5000€","10000€","20000€","50000€","120000€","150000€"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.65296803652968,"tickwidth":0.66417600664176,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.689497716895},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(235,235,235,1)","gridwidth":0.66417600664176,"zeroline":false,"anchor":"x","title":"Ingresos","titlefont":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187},"hoverformat":".2f"},"shapes":[{"type":"rect","fillcolor":"transparent","line":{"color":"rgba(51,51,51,1)","width":0.66417600664176,"linetype":"solid"},"yref":"paper","xref":"paper","x0":0,"x1":1,"y0":0,"y1":1}],"showlegend":true,"legend":{"bgcolor":"rgba(255,255,255,1)","bordercolor":"#E2E2E2","borderwidth":2,"font":{"color":"#000","family":"sans-serif","size":16},"y":0.95,"x":0.05,"orientation":"h"},"annotations":[{"text":"3/4<br />ingresos<br />tipo","x":1.02,"y":1,"showarrow":false,"ax":0,"ay":0,"font":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187},"xref":"paper","yref":"paper","textangle":-0,"xanchor":"left","yanchor":"bottom","legendTitle":true}],"hovermode":"closest","barmode":"relative","images":[{"source":"http://www.unavarra.es/css/bitmaps/upna30-iberus.png?raw=true","xref":"x","yref":"y","x":0.9,"y":3.1,"sizex":2,"sizey":2,"sizing":"stretch","opacity":0.4,"layer":"below"}]},"config":{"doubleClick":"reset","modeBarButtonsToAdd":[{"name":"Collaborate","icon":{"width":1000,"ascent":500,"descent":-50,"path":"M487 375c7-10 9-23 5-36l-79-259c-3-12-11-23-22-31-11-8-22-12-35-12l-263 0c-15 0-29 5-43 15-13 10-23 23-28 37-5 13-5 25-1 37 0 0 0 3 1 7 1 5 1 8 1 11 0 2 0 4-1 6 0 3-1 5-1 6 1 2 2 4 3 6 1 2 2 4 4 6 2 3 4 5 5 7 5 7 9 16 13 26 4 10 7 19 9 26 0 2 0 5 0 9-1 4-1 6 0 8 0 2 2 5 4 8 3 3 5 5 5 7 4 6 8 15 12 26 4 11 7 19 7 26 1 1 0 4 0 9-1 4-1 7 0 8 1 2 3 5 6 8 4 4 6 6 6 7 4 5 8 13 13 24 4 11 7 20 7 28 1 1 0 4 0 7-1 3-1 6-1 7 0 2 1 4 3 6 1 1 3 4 5 6 2 3 3 5 5 6 1 2 3 5 4 9 2 3 3 7 5 10 1 3 2 6 4 10 2 4 4 7 6 9 2 3 4 5 7 7 3 2 7 3 11 3 3 0 8 0 13-1l0-1c7 2 12 2 14 2l218 0c14 0 25-5 32-16 8-10 10-23 6-37l-79-259c-7-22-13-37-20-43-7-7-19-10-37-10l-248 0c-5 0-9-2-11-5-2-3-2-7 0-12 4-13 18-20 41-20l264 0c5 0 10 2 16 5 5 3 8 6 10 11l85 282c2 5 2 10 2 17 7-3 13-7 17-13z m-304 0c-1-3-1-5 0-7 1-1 3-2 6-2l174 0c2 0 4 1 7 2 2 2 4 4 5 7l6 18c0 3 0 5-1 7-1 1-3 2-6 2l-173 0c-3 0-5-1-8-2-2-2-4-4-4-7z m-24-73c-1-3-1-5 0-7 2-2 3-2 6-2l174 0c2 0 5 0 7 2 3 2 4 4 5 7l6 18c1 2 0 5-1 6-1 2-3 3-5 3l-174 0c-3 0-5-1-7-3-3-1-4-4-5-6z"},"click":"function(gd) { \n        // is this being viewed in RStudio?\n        if (location.search == '?viewer_pane=1') {\n          alert('To learn about plotly for collaboration, visit:\\n https://cpsievert.github.io/plotly_book/plot-ly-for-collaboration.html');\n        } else {\n          window.open('https://cpsievert.github.io/plotly_book/plot-ly-for-collaboration.html', '_blank');\n        }\n      }"}],"cloud":false},"source":"A","attrs":{"1ec079df78f":{"size":{},"colour":{},"alpha":{},"text":{},"x":{},"y":{},"type":"scatter"}},"cur_data":"1ec079df78f","visdat":{"1ec079df78f":["function (y) ","x"]},"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1}},"base_url":"https://plot.ly"},"evals":["config.modeBarButtonsToAdd.0.click"],"jsHooks":{"render":[{"code":"function(el, x) { var ctConfig = crosstalk.var('plotlyCrosstalkOpts').set({\"on\":\"plotly_click\",\"persistent\":false,\"dynamic\":false,\"selectize\":false,\"opacityDim\":0.2,\"selected\":{\"opacity\":1}}); }","data":null}]}}</script>
+<p><a href="maps/mapaotri.html" target="_blank">Acceder en pantalla completa al mapa</a></p>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
