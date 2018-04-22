@@ -4,15 +4,24 @@ navbar:
   title: Mapa 2016
   left:
   - text: Inicio
+    icon: fa-home
     href: index.html
   - text: Mapa OTRI
-    href: otri.html
+    menu:
+      - text: Info
+        href: otri.html
+      - text: Mapa
+        icon: fa-chart-area
+        href: maps/mapaotri.html
   - text: Mapa FUS
     href: fus.html
   - text: Mapa CS
     href: cs.html
   - text: General
     href: general.html
+  - text: Siguientes pasos
+    icon: fa-clipboard-list
+    href: siguiente.html
 output:
   html_document:
     code_folding: hide

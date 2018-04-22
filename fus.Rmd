@@ -18,8 +18,8 @@ En este caso, se dispone ya del código <a href="https://www.cnae.com.es/lista-a
 Con estos datos, se ha realizado un gráfico de dispersión con tres indicadores:
 
 - Eje horizontal: es el sector con esta recodificación
-- Eje vertical: son los ingresos que genera cada relación
-- Eje z: El tamaño del círculo se corresponde con el número de contactos
+- Eje vertical: número de convenios que genera cada relación
+- Eje z: El tamaño del círculo se corresponde con los ingresos
 
 ```{r cnae, message=FALSE, warning=FALSE}
 library(readr)

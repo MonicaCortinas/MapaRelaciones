@@ -1,0 +1,38 @@
+---
+title: "Aspectos que están pendientes: siguientes pasos"
+---
+
+```{r setup, include=FALSE}
+
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE, fig.align="center",out.width="95%", cache=FALSE)
+# load R packages
+
+library("extrafont")
+library(knitr)
+library(kableExtra)
+library(formattable)
+library(dplyr)
+
+# set any missing NAs in tables to blank
+options(knitr.kable.NA='')
+```
+
+
+## Aspectos relacionados con la elaboración de los mapas:
+  
+- Las bases de la FUS y OTRI se enriquecerían mucho con los datos de **número de trabajadores**, al menos las que estén disponibles en SABI. De esta manera podemos detectar con qué entidades trabajamos más o menos de lo esperado en función de su tamaño utilizando el tamaño en el eje vertical y los ingresos en el tamaño de los círculos o a la inversa. 
+
+- Si los mapas se fueran a presentar habría que ver:
+    - cómo y dónde alojarlos
+    - dar acceso o no a los datos que las sustentan 
+    - formato...
+
+### Relacionadas con el análisis:
+  
+- La clasificación por sectores se ha hecho de manera bastante ad-hoc. Habría que ver si esa clasificación es o no la más útil, hay sectores que están muy concentrados y podrían desagregarse un poco.
+
+- Una vez realizada la clasificación se podría elaborar un diagnóstico: en qué sectores trabajamos más o menos y por qué, cómo podemos mejorar... Habría que trabajar un **informe resumen**.
+
+### Relacionadas con el procedimiento:
+  
+- Si este proceso se considera útil, habría que elaborar un protocolo de elaboración para el futuro: qué datos vamos a normalizar (CNAE, empleados...), periodicidad de elaboración, análisis... Este procedimiento sería más sencillo con la implantación de un CRM.

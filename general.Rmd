@@ -1,23 +1,227 @@
 ---
 title: "Mapa de Relaciones. Universidad Pública de Navarra"
 ---
-```{r, out.width='15%', echo=FALSE}
-knitr::include_graphics("images/upna.png")
+
+
+Para hacer el mapa general, se han unido las tres fuentes de datos. En este caso, tenemos todos los tipos de relación de cada fuente de datos agrupados. También usamos la misma codificación de sectores.
+- Sector primario y extracción: Grupos CNAE A y B: 0_CNAE
+- Sector Industria-Alimentación: Grupos CNAE C_10 y 11: 1_CNAE
+- Sector Industria_Motor. Grupo CNAE 29: 2_CNAE
+- Otra Industria y construcción. Grupos CNAE Resto Grupo C + GrupoF: 3_CNAE
+- Suministros y Energía: Grupos CNAE D y E: 4_CNAE
+- Comercio, Transporte, Hostelería: Grupos CNAE G, H, I: 5_CNAE
+- Servicios: Información, Artístico, Informática, Consultoría, Financieros: Grupos CNAE J, K, L, M, N, R: 6_CNAE
+- Admon, Pública, Educación, Asociaciones, Extraterrit: Grupos CNAE O ,P, Q, S, U: 7_CNAE
+
+Así:
+
+- Eje horizontal: es el sector con esta recodificación
+- Eje vertical: son los ingresos que genera cada relación en el caso de la FUS y OTRI y los ingresos totales de la empresa en el caso del Consejo Social
+- Eje z: El tamaño del círculo se corresponde también con los ingresos
+
+```{r cnae, message=FALSE, warning=FALSE}
+library(readr)
+library(tidyverse)
+# compute new cnae (cs$CNAE, fus$CNAE, otri$CNAE)
+
+cnae2009 <- read_csv("data/cnae2009.csv", 
+                    col_types = cols(CODINTEGR = col_skip(), 
+                     COD_CNAE2009 = col_character(), X4 = col_skip(), 
+                     X5 = col_skip()))
+
+#newcodes
+# cuatro cifras
+
+cnae4d<- cnae2009[which(nchar(cnae2009$COD_CNAE2009)==4),]
+
+cnae4d$grupocnae <- 
+      ifelse (cnae4d$COD_CNAE2009 < 1000,
+            paste("0",cnae4d$COD_CNAE2009, sep=""),
+      (ifelse((cnae4d$COD_CNAE2009 >= 1000) & (cnae4d$COD_CNAE2009 < 1200), 
+            paste("1",cnae4d$COD_CNAE2009, sep=""),
+      ifelse((cnae4d$COD_CNAE2009 >= 1200) & (cnae4d$COD_CNAE2009 < 2900), 
+            paste("3",cnae4d$COD_CNAE2009, sep=""),
+      ifelse((cnae4d$COD_CNAE2009 >= 2900) & (cnae4d$COD_CNAE2009 < 3000), 
+            paste("2",cnae4d$COD_CNAE2009, sep=""),
+      ifelse((cnae4d$COD_CNAE2009 >= 3000) & (cnae4d$COD_CNAE2009 < 3500), 
+            paste("3",cnae4d$COD_CNAE2009, sep=""),
+      ifelse((cnae4d$COD_CNAE2009 >= 4110) & (cnae4d$COD_CNAE2009 < 4400), 
+            paste("3",cnae4d$COD_CNAE2009, sep=""),
+      ifelse((cnae4d$COD_CNAE2009 >= 3500) & (cnae4d$COD_CNAE2009 < 4000), 
+            paste("4",cnae4d$COD_CNAE2009, sep=""), 
+      ifelse((cnae4d$COD_CNAE2009 >= 4500) & (cnae4d$COD_CNAE2009 <= 5630), 
+            paste("5",cnae4d$COD_CNAE2009, sep=""),
+      ifelse((cnae4d$COD_CNAE2009 >= 5800) & (cnae4d$COD_CNAE2009 <= 8299), 
+            paste("6",cnae4d$COD_CNAE2009, sep=""),       
+      ifelse((cnae4d$COD_CNAE2009 >= 9000) & (cnae4d$COD_CNAE2009 < 9330), 
+            paste("6",cnae4d$COD_CNAE2009, sep=""), 
+      ifelse((cnae4d$COD_CNAE2009 >= 8400) & (cnae4d$COD_CNAE2009 <= 8899), 
+            paste("7",cnae4d$COD_CNAE2009, sep=""),       
+      ifelse((cnae4d$COD_CNAE2009 >=9400), 
+            paste("7",cnae4d$COD_CNAE2009, sep=""),       0
+                    )))))))))))))
+
+cnae4d$nombregrupo <- 
+      ifelse (cnae4d$COD_CNAE2009 < 1000,
+            paste("Sector primario y extracción"),
+      ifelse((cnae4d$COD_CNAE2009 >= 1000) & (cnae4d$COD_CNAE2009 < 1200), 
+            paste("Sector Industria-Alimentación"),
+      ifelse((cnae4d$COD_CNAE2009 >= 1200) & (cnae4d$COD_CNAE2009 < 2900), 
+            paste("Otra Industria y construcción"),
+      ifelse((cnae4d$COD_CNAE2009 >= 2900) & (cnae4d$COD_CNAE2009 < 3000), 
+            paste("Sector Industria_Motor"),
+      ifelse((cnae4d$COD_CNAE2009 >= 3000) & (cnae4d$COD_CNAE2009 < 3500), 
+            paste("Otra Industria y construcción"),
+      ifelse((cnae4d$COD_CNAE2009 >= 4110) & (cnae4d$COD_CNAE2009 <= 4400), 
+            paste("Otra Industria y construcción"),
+      ifelse((cnae4d$COD_CNAE2009 >= 3500) & (cnae4d$COD_CNAE2009 <= 4000), 
+            paste("Suministros y Energía"), 
+      ifelse((cnae4d$COD_CNAE2009 >= 4500) & (cnae4d$COD_CNAE2009 <= 5630), 
+            paste("Comercio, Transporte, Hostelería"),
+      ifelse((cnae4d$COD_CNAE2009 >= 5800) & (cnae4d$COD_CNAE2009 <= 8299), 
+            paste("Servicios: Información, Artístico, Informática, Consultoría, Financieros"),       
+      ifelse((cnae4d$COD_CNAE2009 >= 9000) & (cnae4d$COD_CNAE2009 < 9330), 
+            paste("Servicios: Información, Artístico, Informática, Consultoría, Financieros"), 
+      ifelse((cnae4d$COD_CNAE2009 >= 8400) & (cnae4d$COD_CNAE2009 <= 8899), 
+            paste("Admon. Pública, Educación, Asociaciones, Extraterrit"),       
+      ifelse((cnae4d$COD_CNAE2009 >=9400), 
+            paste("Admon. Pública, Educación, Asociaciones, Extraterrit"), 0
+            ))))))))))))
+rm(cnae2009)
+
+## Variables: nombre, cnae, grupo cnae, ingresos, tipo
+
+# datos fus
+   fus <- read_csv("data/Fus_Listado empresas.csv", na="",
+                locale = locale(asciify = TRUE))
+
+      names(fus)<-gsub(" ", "", names(fus)) # Quitar espacios en blanco
+      cnae3<- fus[which(nchar(fus$CNAE_1)==3),] # Localiza códigos de 3 cifras
+      fus[which(fus$CNAE_1=="113"),5]<-"0113"
+      fus[which(fus$CNAE_1=="161"),5]<-"0161"
+      fus[which(fus$CNAE_1=="163"),5]<-"6201"
+      fus[which(fus$CNAE_1=="729"),5]<-"0729"
+      rm(cnae3)
+      l<-length(table(fus$Name)) #Comprobamos que cada fila es una empresa
+      for (i in 1:length(fus$No_)) {
+            fus[i, 11]<- cnae4d[grep(as.numeric(fus[i,5]),cnae4d$grupocnae),3]
+      }
+      for (i in 1:length(fus$No_)) {
+            fus[i, 12]<- cnae4d[grep(as.numeric(fus[i,5]),cnae4d$grupocnae),4]
+      }
+      fus$grupocnae <- as.numeric(fus$grupocnae)
+      fus_general<- cbind.data.frame(fus$ALIAS, fus$CNAE_1, fus$grupocnae, fus$Ingresos2016,
+                                stringsAsFactors = FALSE )
+      fus_general$tipo<- c("FUS")
+      names(fus_general) <- c("nombre", "cnae", "grupo", "ingresos", "tipo")
+# Datos otri
+      otri <- read_csv("data/Otriconcnae.csv", 
+                       locale = locale(asciify = TRUE), na = "empty")
+      cnae3<- otri[which(nchar(otri$CNAE)==3),] # Localiza códigos de 3 cifras
+      otri[which(otri$CNAE=="121"),6]<-"0121"
+      rm(cnae3)
+      for (i in 1:length(otri$CIF)) {
+            otri[i, 30]<- cnae4d[grep(as.numeric(otri[i,6]),cnae4d$grupocnae),3]
+      }
+      for (i in 1:length(otri$CIF)) {
+            otri[i, 31]<- cnae4d[grep(as.numeric(otri[i,6]),cnae4d$grupocnae),4]
+      }
+      otri$grupocnae <- as.numeric(otri$grupocnae)
+      
+      names(otri)<-gsub(" ", "", names(otri)) # Quitar espacios en blanco
+      l2<-length(table(otri$CIF)) #Comprobamos que cada fila es una empresa: no lo es
+      ingresos <- aggregate(formula = otri$ImportesinIVA ~ otri$CIF, FUN = sum)
+      nombre <- aggregate(formula = otri$Nombreentidad ~ otri$CIF, FUN = last)
+      caracter <- aggregate(formula = otri$Caracter ~ otri$CIF, FUN = last)
+      cnae <- aggregate(formula = otri$CNAE ~ otri$CIF, FUN = last)
+      ambito <- aggregate(formula = otri$Ambito ~ otri$CIF, FUN = last)
+      grupocnae<- aggregate(formula = otri$grupocnae ~ otri$CIF, FUN = last)
+      otri_general <- cbind.data.frame(nombre[,1:2], cnae[,2], ingresos[,2], 
+                                       caracter[,2],ambito[,2],grupocnae[,2],  stringsAsFactors = FALSE )
+      otri_general <- otri_general[,c(2,3,7,4)]
+   
+      rm(ingresos, nombre, caracter, cnae, ambito,grupocnae)
+
+      otri_general$tipo<- c("OTRI")
+      names(otri_general) <- c("nombre", "cnae", "grupo", "ingresos", "tipo")   
+# datos cs
+      cs <- read_csv("data/ConsejoSocial_datosoriginales.csv", 
+                     locale = locale(asciify = TRUE), na = "empty")
+      # Hay algunos códigos cnae de 3 cifras incorrectos?
+
+      cnae3<- cs[which(nchar(cs$CNAE)<4),] # Localiza códigos de 3 cifras
+      cs[which(cs$CNAE=="812"),4]<-"8121"
+      rm(cnae3)
+      names(cs)<- c("razon", "nombre", "cif", "cnae", "ntrabaj", 
+                    "totaling", "ingUPNA", "tipo", "tipo_10", "contacto", "aclaraciones")
+      l1<-length(table(cs$cif)) #Comprobamos que cada fila es una empresa: no lo es
+      cs_completos<- cs[complete.cases(cs), ]
+      l2<-length(table(cs_completos$cif)) #Comprobamos que cada fila es una empresa: sí lo es
+      for (i in 1:length(cs_completos$cif)) {
+            cs_completos[i, 12]<- cnae4d[grep(as.numeric(cs_completos[i,4]),cnae4d$grupocnae),3]
+      }
+      for (i in 1:length(cs_completos$cif)) {
+            cs_completos[i, 13]<- cnae4d[grep(as.numeric(cs_completos[i,4]),cnae4d$grupocnae),4]
+      }
+      cs_completos$grupocnae <- as.numeric(cs_completos$grupocnae)
+      cs_completos$ingresos <- cs_completos$totaling/1000
+      cs_general <-  cs_completos[,c(2,4,12,14)]
+
+      cs_general$tipo<- c("CS")
+      names(cs_general) <- c("nombre", "cnae", "grupo", "ingresos", "tipo")      
+# CREAMOS EL ARCHIVO COMPLETO
+mapaupna <- rbind.data.frame(fus_general, otri_general, cs_general,  stringsAsFactors = FALSE )
+rm(fus_general, otri_general, cs_general)
+
+
+## MAPA
+library(devtools)
+# devtools::install_github("ropensci/plotly")
+library(plotly)
+library("ggsci")
+Sys.setenv("plotly_username"="mcortinas")
+Sys.setenv("plotly_api_key"="yJb8VBxhRqDRAOesNWRT")
+
+p <- ggplot(mapaupna, aes(x = grupo, y = ingresos)) +
+      geom_point(aes(size = ingresos, color=tipo, alpha=3/4, 
+                     text = paste("Nombre:", mapaupna$nombre))) +
+      labs( title="Mapa de Relaciones UPNA 2016") +
+      scale_y_continuous(name="Ingresos (ingresos CS: facturación en mill\U20AC)")+
+      scale_x_continuous(name="Sector", limits=c(0,80000), breaks=c(500,12000,22000,32000, 43000,54000,66000,78000),
+                         labels=c("Sector primario y extracción", "Sector Industria-Alimentación", "Sector Industria_Motor",
+                                  "Otra Industria y construcción", "Suministros y Energía", "Comercio, Transporte, Hostelería",
+                                  "Servicios: Banca, Informática, Consultoría...",
+                                  "Admon. Pública, Educación..."))+
+      scale_color_lancet()+
+      theme_bw()
+
+gg <- ggplotly(p)
+l <- list(
+      font = list(
+            family = "sans-serif",
+            size = 16,
+            color = "#000"),
+      x = 0.05, 
+      y = 0.95, 
+      orientation = 'h',
+      bordercolor = "#E2E2E2",
+      borderwidth = 2)
+
+l2 <- list(source = "http://www.unavarra.es/css/bitmaps/upna30-iberus.png?raw=true",
+           xref = "x",
+           yref = "y",
+           x = 0.9,
+           y = 3.1,
+           sizex = 2,
+           sizey = 2,
+           sizing = "stretch",
+           opacity = 0.4,
+           layer = "below"
+)
+layout(gg, legend = l, images = l2)
+
+
 
 ```
 
-## DEMO MAPA DE RELACIONES
-
-*Abril, 2018*
-
-Presentamos los primeros datos elaborados a partir de los datos proporcionados por la FUS, datos OTRI y datos del Consejo Social. Esta es la primera aproximación, con el objetivo de tener una idea sobre la utilidad del proyecto antes de invertir mayores esfuerzos.
-
-Se han utilizados:
-
-- datos de contratos OTRI
-- datos de la Fundación Universidad Sociedad
-- datos del Consejo Social
-
-Se han elaborado cuatro mapas, uno general y uno para cada uno de estos casos: general UPNA, mapa OTRI, mapa FUS, mapa CS.
-
-Para ver los mapas, se recomienda utilizar Google Chrome, Safari o IE, en Mozilla Firefox tarda más tiempo en cargar.
+<a href="maps/mapageneral.html" target="_blank">Acceder en pantalla completa al mapa</a>

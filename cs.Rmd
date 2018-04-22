@@ -1,12 +1,13 @@
 ---
-title: "Mapa para relaciones OTRI"
+title: "Mapa para relaciones Fundación Universidad Sociedad"
 ---
 
-Este mapa se ha elaborado uniendo los datos proporcionados por la OTRI. Se ha utilizado el nombre de la empresa, el NIF, el tipo de relación (acuerdo marco, servicios, asesoría, formación o I+D) y los ingresos.
+Este mapa se ha elaborado uniendo los datos proporcionados por el Consejo social. Se incluyen los datos de facturación y número de empleados obtenidos de SABI. No se han incluído entidades para las que, de momento, no tenemos estos datos. Los tipos de relación son club CEO u otras relaciones.
 
-A partir de los datos disponibles, se ha completado manualmente el código <a href="https://www.cnae.com.es/lista-actividades.php" target="_blank">CNAE</a>. En muchos casos el código CNAE es una aproximación, habría que depurar bien la base y tratar de completarla con datos de facturación o trabajadores de las entidades.
+La agrupación en el eje horizontal se corresponde con una clasificación por sectores realizada ad-hoc. El tamaño del círculo se corresponde con el número de contactos. El eje vertical es el importe.
 
-Con este código, se ha realizado una agrupación por sectores, realizada ad-hoc:
+
+En este caso, se dispone ya del código <a href="https://www.cnae.com.es/lista-actividades.php" target="_blank">CNAE</a> en los datos. Con este código, se ha realizado una agrupación por sectores, realizada ad-hoc:
 
 - Sector primario y extracción: Grupos CNAE A y B: 0_CNAE
 - Sector Industria-Alimentación: Grupos CNAE C_10 y 11: 1_CNAE
@@ -17,9 +18,15 @@ Con este código, se ha realizado una agrupación por sectores, realizada ad-hoc
 - Servicios: Información, Artístico, Informática, Consultoría, Financieros: Grupos CNAE J, K, L, M, N, R: 6_CNAE
 - Admon, Pública, Educación, Asociaciones, Extraterrit: Grupos CNAE O ,P, Q, S, U: 7_CNAE
 
+Con estos datos, se ha realizado un gráfico de dispersión con tres indicadores:
+
+- Eje horizontal: es el sector con esta recodificación
+- Eje vertical: son los ingresos en miles de euros de la entidad
+- Eje z: El tamaño del círculo se corresponde con el número de contactos
+
 ```{r cnae, message=FALSE, warning=FALSE}
 library(readr)
-
+library(tidyverse)
 # compute new cnae (cs$CNAE, fus$CNAE, otri$CNAE)
 
 cnae2009 <- read_csv("data/cnae2009.csv", 
@@ -87,74 +94,41 @@ cnae4d$nombregrupo <-
             ))))))))))))
 rm(cnae2009)
 
-# Mapa OTRI
-library(dplyr)
-library(tidyverse)
-otri <- read_csv("data/Otriconcnae.csv", 
-                 locale = locale(asciify = TRUE), na = "empty")
+# Mapa Cs
+cs <- read_csv("data/ConsejoSocial_datosoriginales.csv", 
+               locale = locale(asciify = TRUE), na = "empty")
+# Hay algunos códigos cnae de 3 cifras incorrectos?
 
-# Hay algunos códigos cnae de 3 cifras incorrectos
-# Los corregimos:
-cnae3<- otri[which(nchar(otri$CNAE)==3),] # Localiza códigos de 3 cifras
-otri[which(otri$CNAE=="121"),6]<-"0121"
+cnae3<- cs[which(nchar(cs$CNAE)<4),] # Localiza códigos de 3 cifras
+cs[which(cs$CNAE=="812"),4]<-"8121"
 rm(cnae3)
-names(otri)<-gsub(" ", "", names(otri)) # Quitar espacios en blanco
-l<-length(table(otri$CIF)) #Comprobamos que cada fila es una empresa: no lo es
+names(cs)<- c("razon", "nombre", "cif", "cnae", "ntrabaj", 
+                        "totaling", "ingUPNA", "tipo", "tipo_10", "contacto", "aclaraciones")
+l<-length(table(cs$cif)) #Comprobamos que cada fila es una empresa: no lo es
+# hay bastantes perdidos: seleccionamos filas completas
+cs_completos<- cs[complete.cases(cs), ]
 
-ingresos <- aggregate(formula = otri$ImportesinIVA ~ otri$CIF+otri$Tipocontrato, FUN = sum)
-nombre <- aggregate(formula = otri$Nombreentidad ~ otri$CIF+otri$Tipocontrato, FUN = last)
-caracter <- aggregate(formula = otri$Caracter ~ otri$CIF+otri$Tipocontrato, FUN = last)
-cnae <- aggregate(formula = otri$CNAE ~ otri$CIF+otri$Tipocontrato, FUN = last)
-ambito <- aggregate(formula = otri$Ambito ~ otri$CIF+otri$Tipocontrato, FUN = last)
-
-otri_empresa <- cbind.data.frame(nombre[,1:3], cnae[,3], ingresos[,3], 
-                                 caracter[,3],ambito[,3], stringsAsFactors = FALSE )
-names(otri_empresa)<- c("cif", "tipo", "nombre", "cnae", "ingresos", "caracter", "ambito")
-
-rm(ingresos, nombre, caracter, cnae, ambito)
-
+l2<-length(table(cs_completos$cif)) #Comprobamos que cada fila es una empresa: sí lo es
 
 # Completa los códigos
-for (i in 1:length(otri_empresa$cif)) {
-      otri_empresa[i, 8]<- cnae4d[grep(as.numeric(otri_empresa[i,4]),cnae4d$grupocnae),3]
+for (i in 1:length(cs_completos$cif)) {
+      cs_completos[i, 12]<- cnae4d[grep(as.numeric(cs_completos[i,4]),cnae4d$grupocnae),3]
 }
 
 
-for (i in 1:length(otri_empresa$cif)) {
-      otri_empresa[i, 9]<- cnae4d[grep(as.numeric(otri_empresa[i,4]),cnae4d$grupocnae),4]
+for (i in 1:length(cs_completos$cif)) {
+      cs_completos[i, 13]<- cnae4d[grep(as.numeric(cs_completos[i,4]),cnae4d$grupocnae),4]
 }
 
-otri_empresa$grupocnae <- as.numeric(otri_empresa$grupocnae)
+cs_completos$grupocnae <- as.numeric(cs_completos$grupocnae)
+
+cs_completos$ingresos <- cs_completos$totaling/1000
+
 
 # Variable X: grupocnae
-# Variable Y: ingresos
-# facets: tipo
-# size: ambito
+# Variable Y: totaling
 # https://plot.ly/r/getting-started/
-```
 
-Se ha realizado un gráfico de dispersión con tres indicadores:
-
-- Eje horizontal: es el sector con esta recodificación
-- Eje vertical: son los ingresos que proporciona cada relación
-- Eje z: El tamaño del círculo se corresponde también con los ingresos
-
-La agrupación de sectores se corresponde con:
-- Sector primario y extracción: Grupos CNAE A y B: 0_CNAE
-- Sector Industria-Alimentación: Grupos CNAE C_10 y 11: 1_CNAE
-- Sector Industria_Motor. Grupo CNAE 29: 2_CNAE
-- Otra Industria y construcción. Grupos CNAE Resto Grupo C + GrupoF: 3_CNAE
-- Suministros y Energía: Grupos CNAE D y E: 4_CNAE
-- Comercio, Transporte, Hostelería: Grupos CNAE G, H, I: 5_CNAE
-- Servicios: Información, Artístico, Informática, Consultoría, Financieros: Grupos CNAE J, K, L, M, N, R: 6_CNAE
-- Admon, Pública, Educación, Asociaciones, Extraterrit: Grupos CNAE O ,P, Q, S, U: 7_CNAE
-
-
-Se incluyen otros datos como el nombre y el tipo de relación. La herramienta permite hacer zoom sobre el mapa seleccionando cualquier cuadrante. "Reset zoom" devuelve el mapa a su tamaño original.
-
-También se puede seleccionar los tipos de relación  pulsando sobre la leyenda del mapa.
-
-```{r plotOTRI, message=FALSE, warning=FALSE}
 library(devtools)
 # devtools::install_github("ropensci/plotly")
 library(plotly)
@@ -162,11 +136,11 @@ library("ggsci")
 Sys.setenv("plotly_username"="mcortinas")
 Sys.setenv("plotly_api_key"="yJb8VBxhRqDRAOesNWRT")
 
-p <- ggplot(otri_empresa, aes(x = grupocnae, y = ingresos)) +
-      geom_point(aes(size = ingresos, color=tipo, alpha=3/4, text = paste("Nombre:", otri_empresa$nombre))) +
-      labs( title="Mapa de Relaciones OTRI" , subtitle = NULL) +
-      scale_y_continuous(name="Ingresos",breaks=c(0, 5000,10000,20000,50000, 100000, 150000),
-                         labels=paste(c(0, 5000,10000,20000,50000, 120000, 150000),"\U20AC", sep=""))+
+p <- ggplot(cs_completos, aes(x = grupocnae, y = ingresos)) +
+      geom_point(aes(size = ntrabaj, color=tipo, alpha=3/4, 
+                     text = paste("Nombre:", cs_completos$nombre))) +
+      labs( title="Mapa de Relaciones Consejo Social" , subtitle = "(Solo datos completos)") +
+      scale_y_continuous(name="Ingresos (miles de euros)")+
       scale_x_continuous(name="Sector", limits=c(0,80000), breaks=c(500,12000,22000,32000, 43000,54000,66000,78000),
                          labels=c("Sector primario y extracción", "Sector Industria-Alimentación", "Sector Industria_Motor",
                                   "Otra Industria y construcción", "Suministros y Energía", "Comercio, Transporte, Hostelería",
@@ -197,10 +171,14 @@ l2 <- list(source = "http://www.unavarra.es/css/bitmaps/upna30-iberus.png?raw=tr
            sizing = "stretch",
            opacity = 0.4,
            layer = "below"
-)
+      )
 layout(gg, legend = l, images = l2)
 ```
 
+Se puede hacer zoom sobre el mapa seleccionando cualquier cuadrante. "Reset zoom" devuelve el mapa a su tamaño original. También se puede seleccionar los tipos de relación (prácticas curriculares, extracurriculares o procesos de selección) pulsando sobre la leyenda del mapa.
+
+Se incluyen otros datos como el nombre y el tipo de relación. 
 
 
-<a href="maps/mapaotri.html" target="_blank">Acceder en pantalla completa al mapa</a>
+
+<a href="maps/mapacs.html" target="_blank">Acceder en pantalla completa al mapa</a>
