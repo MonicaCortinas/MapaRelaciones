@@ -1,12 +1,10 @@
 ---
-title: "Mapa para relaciones OTRI"
+title: "Mapa para relaciones Fundación Universidad Sociedad"
 ---
 
-Este mapa se ha elaborado uniendo los datos proporcionados por la OTRI. Se ha utilizado el nombre de la empresa, el NIF, el tipo de relación (acuerdo marco, servicios, asesoría, formación o I+D) y los ingresos.
+Este mapa se ha elaborado uniendo los datos proporcionados por la FUS. Los tipos de relación son prácticas curriculares, extracurriculares o procesos de selección. Se ha utilizado el nombre de la empresa, el NIF, el tipo de relación (acuerdo marco, servicios, asesoría, formación o I+D) y los ingresos. Es necesario tener en cuenta que los datos de facturación no son necesariamente abonados por las entidades, ya que depende del tipo de convenio.
 
-A partir de los datos disponibles, se ha completado manualmente el código <a href="https://www.cnae.com.es/lista-actividades.php" target="_blank">CNAE</a>. En muchos casos el código CNAE es una aproximación, habría que depurar bien la base y tratar de completarla con datos de facturación o trabajadores de las entidades.
-
-Con este código, se ha realizado una agrupación por sectores, realizada ad-hoc:
+En este caso, se dispone ya del código <a href="https://www.cnae.com.es/lista-actividades.php" target="_blank">CNAE</a> en los datos. Con este código, se ha realizado una agrupación por sectores, realizada ad-hoc:
 
 - Sector primario y extracción: Grupos CNAE A y B: 0_CNAE
 - Sector Industria-Alimentación: Grupos CNAE C_10 y 11: 1_CNAE
@@ -17,9 +15,15 @@ Con este código, se ha realizado una agrupación por sectores, realizada ad-hoc
 - Servicios: Información, Artístico, Informática, Consultoría, Financieros: Grupos CNAE J, K, L, M, N, R: 6_CNAE
 - Admon, Pública, Educación, Asociaciones, Extraterrit: Grupos CNAE O ,P, Q, S, U: 7_CNAE
 
+Con estos datos, se ha realizado un gráfico de dispersión con tres indicadores:
+
+- Eje horizontal: es el sector con esta recodificación
+- Eje vertical: son los ingresos que genera cada relación
+- Eje z: El tamaño del círculo se corresponde con el número de contactos
+
 ```{r cnae, message=FALSE, warning=FALSE}
 library(readr)
-
+library(tidyverse)
 # compute new cnae (cs$CNAE, fus$CNAE, otri$CNAE)
 
 cnae2009 <- read_csv("data/cnae2009.csv", 
@@ -87,85 +91,62 @@ cnae4d$nombregrupo <-
             ))))))))))))
 rm(cnae2009)
 
-# Mapa OTRI
-library(dplyr)
-library(tidyverse)
-otri <- read_csv("data/Otriconcnae.csv", 
-                 locale = locale(asciify = TRUE), na = "empty")
+# MAPA FUS
+fus <- read_csv("data/Fus_Listado empresas.csv", na="",
+      locale = locale(asciify = TRUE))
 
+names(fus)<-gsub(" ", "", names(fus)) # Quitar espacios en blanco
 # Hay algunos códigos cnae de 3 cifras incorrectos
 # Los corregimos:
-cnae3<- otri[which(nchar(otri$CNAE)==3),] # Localiza códigos de 3 cifras
-otri[which(otri$CNAE=="121"),6]<-"0121"
+cnae3<- fus[which(nchar(fus$CNAE_1)==3),] # Localiza códigos de 3 cifras
+fus[which(fus$CNAE_1=="113"),5]<-"0113"
+fus[which(fus$CNAE_1=="161"),5]<-"0161"
+fus[which(fus$CNAE_1=="163"),5]<-"6201"
+fus[which(fus$CNAE_1=="729"),5]<-"0729"
 rm(cnae3)
-names(otri)<-gsub(" ", "", names(otri)) # Quitar espacios en blanco
-l<-length(table(otri$CIF)) #Comprobamos que cada fila es una empresa: no lo es
 
-ingresos <- aggregate(formula = otri$ImportesinIVA ~ otri$CIF+otri$Tipocontrato, FUN = sum)
-nombre <- aggregate(formula = otri$Nombreentidad ~ otri$CIF+otri$Tipocontrato, FUN = last)
-caracter <- aggregate(formula = otri$Caracter ~ otri$CIF+otri$Tipocontrato, FUN = last)
-cnae <- aggregate(formula = otri$CNAE ~ otri$CIF+otri$Tipocontrato, FUN = last)
-ambito <- aggregate(formula = otri$Ambito ~ otri$CIF+otri$Tipocontrato, FUN = last)
-
-otri_empresa <- cbind.data.frame(nombre[,1:3], cnae[,3], ingresos[,3], 
-                                 caracter[,3],ambito[,3], stringsAsFactors = FALSE )
-names(otri_empresa)<- c("cif", "tipo", "nombre", "cnae", "ingresos", "caracter", "ambito")
-
-rm(ingresos, nombre, caracter, cnae, ambito)
-
+l<-length(table(fus$Name)) #Comprobamos que cada fila es una empresa
 
 # Completa los códigos
-for (i in 1:length(otri_empresa$cif)) {
-      otri_empresa[i, 8]<- cnae4d[grep(as.numeric(otri_empresa[i,4]),cnae4d$grupocnae),3]
-}
+for (i in 1:length(fus$No_)) {
+      fus[i, 11]<- cnae4d[grep(as.numeric(fus[i,5]),cnae4d$grupocnae),3]
+      }
 
+# Añade el nombre
+for (i in 1:length(fus$No_)) {
+      fus[i, 12]<- cnae4d[grep(as.numeric(fus[i,5]),cnae4d$grupocnae),4]}
+fus$grupocnae <- as.numeric(fus$grupocnae)
 
-for (i in 1:length(otri_empresa$cif)) {
-      otri_empresa[i, 9]<- cnae4d[grep(as.numeric(otri_empresa[i,4]),cnae4d$grupocnae),4]
-}
-
-otri_empresa$grupocnae <- as.numeric(otri_empresa$grupocnae)
+# Para hacer el gráfico
+# "poner en formato largo"
+library(tidyr)
+fus$No_ <- factor(fus$No_)
+fus_long <- gather(fus, tipo, convenios, Practicascurriculares2016:Selecciones2016Empleootrabajo, factor_key=TRUE)
+fus_long$tipo<- factor(fus_long$tipo, labels=c("Pract. Curriculares", "Pract. Extracurriculares","Proceso Selección" ))
 
 # Variable X: grupocnae
-# Variable Y: ingresos
+# Variable Y: convenios
 # facets: tipo
-# size: ambito
+# size: Ingresos2016
 # https://plot.ly/r/getting-started/
-```
 
-Se ha realizado un gráfico de dispersión con tres indicadores:
-
-- Eje horizontal: es el sector con esta recodificación
-- Eje vertical: son los ingresos que proporciona cada relación
-- Eje z: El tamaño del círculo se corresponde con el número de contactos
-
-La agrupación de sectores se corresponde con:
-
-
-
-Se incluyen otros datos como el nombre y el tipo de relación. La herramienta permite hacer zoom sobre el mapa seleccionando cualquier cuadrante. "Reset zoom" devuelve el mapa a su tamaño original.
-
-También se puede seleccionar los tipos de relación  pulsando sobre la leyenda del mapa.
-
-```{r plotOTRI, message=FALSE, warning=FALSE}
 library(devtools)
 # devtools::install_github("ropensci/plotly")
 library(plotly)
 library("ggsci")
 Sys.setenv("plotly_username"="mcortinas")
 Sys.setenv("plotly_api_key"="yJb8VBxhRqDRAOesNWRT")
-
-p <- ggplot(otri_empresa, aes(x = grupocnae, y = ingresos)) +
-      geom_point(aes(size = ingresos, color=tipo, alpha=3/4, text = paste("Nombre:", otri_empresa$nombre))) +
-      labs( title="Mapa de Relaciones OTRI" , subtitle = NULL) +
-      scale_y_continuous(name="Ingresos",breaks=c(0, 5000,10000,20000,50000, 100000, 150000),
-                         labels=paste(c(0, 5000,10000,20000,50000, 120000, 150000),"\U20AC", sep=""))+
+c<-Sys.setlocale("LC_CTYPE","spanish")
+p <- ggplot(fus_long, aes(x = grupocnae, y = convenios)) +
+      geom_point(aes(size = Ingresos2016, color=tipo, marker=list(alpha=3/4), text = paste("Nombre:", fus_long$ALIAS))) +
+      labs( title="Mapa de Relaciones FUS" , subtitle = NULL) +
+      scale_y_continuous(name="Número de Convenios", limits=c(0,70), breaks=c(5,10,15,20, 40,70))+
       scale_x_continuous(name="Sector", limits=c(0,80000), breaks=c(500,12000,22000,32000, 43000,54000,66000,78000),
                          labels=c("Sector primario y extracción", "Sector Industria-Alimentación", "Sector Industria_Motor",
                                   "Otra Industria y construcción", "Suministros y Energía", "Comercio, Transporte, Hostelería",
                                   "Servicios: Banca, Informática, Consultoría...",
                                   "Admon. Pública, Educación..."))+
-      scale_color_lancet()+
+      scale_color_startrek()+
       theme_bw()
 
 gg <- ggplotly(p)
@@ -180,7 +161,7 @@ l <- list(
       bordercolor = "#E2E2E2",
       borderwidth = 2)
 
-l2 <- list(source = "http://www.unavarra.es/css/bitmaps/upna30-iberus.png?raw=true",
+l2 <- list(source = "https://www.unavarra.es/digitalAssets/103/103080_100000upna-logo-2018-con-leyenda.png",
            xref = "x",
            yref = "y",
            x = 0.9,
@@ -191,9 +172,21 @@ l2 <- list(source = "http://www.unavarra.es/css/bitmaps/upna30-iberus.png?raw=tr
            opacity = 0.4,
            layer = "below"
 )
+
+      
 layout(gg, legend = l, images = l2)
+
+# Variable X: grupocnae
+# Variable Y: ingresos
+# facets: tipo
+# size: ambito
+# https://plot.ly/r/getting-started/
 ```
 
+Se puede hacer zoom sobre el mapa seleccionando cualquier cuadrante. "Reset zoom" devuelve el mapa a su tamaño original. También se puede seleccionar los tipos de relación (prácticas curriculares, extracurriculares o procesos de selección) pulsando sobre la leyenda del mapa.
+
+Se incluyen otros datos como el nombre y el tipo de relación. 
 
 
-<a href="maps/mapaotri.html" target="_blank">Acceder en pantalla completa al mapa</a>
+
+<a href="maps/mapafus.html" target="_blank">Acceder en pantalla completa al mapa</a>

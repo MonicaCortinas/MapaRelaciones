@@ -8,11 +8,11 @@ navbar:
   - text: Mapa OTRI
     href: otri.html
   - text: Mapa FUS
-    href: mapafus.html
+    href: fus.html
   - text: Mapa CS
-    href: mapacs.html
+    href: cs.html
   - text: General
-    href: mapageneral.html
+    href: general.html
 output:
   html_document:
     code_folding: hide
