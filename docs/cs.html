@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+
+
+<title>Mapa para relaciones Fundación Universidad Sociedad</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/cerulean.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<script src="site_libs/navigation-1.1/codefolding.js"></script>
+<link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<script src="site_libs/htmlwidgets-1.2/htmlwidgets.js"></script>
+<script src="site_libs/plotly-binding-4.7.1.9000/plotly.js"></script>
+<script src="site_libs/typedarray-0.1/typedarray.min.js"></script>
+<link href="site_libs/crosstalk-1.0.0/css/crosstalk.css" rel="stylesheet" />
+<script src="site_libs/crosstalk-1.0.0/js/crosstalk.min.js"></script>
+<link href="site_libs/plotlyjs-1.30.0/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="site_libs/plotlyjs-1.30.0/plotly-latest.min.js"></script>
+<link href="site_libs/font-awesome-4.5.0/css/font-awesome.min.css" rel="stylesheet" />
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 51px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+
+.section h2 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h3 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h4 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h5 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h6 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+
+<div class="container-fluid main-container">
+
+<!-- tabsets -->
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+</script>
+
+<!-- code folding -->
+<style type="text/css">
+.code-folding-btn { margin-bottom: 4px; }
+</style>
+<script>
+$(document).ready(function () {
+  window.initializeCodeFolding("hide" === "show");
+});
+</script>
+
+
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Mapa 2016</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">
+    <span class="fa fa-home"></span>
+     
+    Inicio
+  </a>
+</li>
+<li>
+  <a href="otri.html">Datos OTRI</a>
+</li>
+<li>
+  <a href="fus.html">Datos FUS</a>
+</li>
+<li>
+  <a href="cs.html">Datos CS</a>
+</li>
+<li>
+  <a href="general.html">General</a>
+</li>
+<li>
+  <a href="siguiente.html">
+    <span class="fa fa-clipboard-list"></span>
+     
+    Siguientes pasos
+  </a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+<div class="btn-group pull-right">
+<button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span>Code</span> <span class="caret"></span></button>
+<ul class="dropdown-menu" style="min-width: 50px;">
+<li><a id="rmd-show-all-code" href="#">Show All Code</a></li>
+<li><a id="rmd-hide-all-code" href="#">Hide All Code</a></li>
+</ul>
+</div>
+
+
+
+<h1 class="title toc-ignore">Mapa para relaciones Fundación Universidad Sociedad</h1>
+
+</div>
+
+
+<p>Este mapa se ha elaborado uniendo los datos proporcionados por el Consejo social. Se incluyen los datos de facturación y número de empleados obtenidos de SABI. No se han incluído entidades para las que, de momento, no tenemos estos datos. Los tipos de relación son club CEO u otras relaciones.</p>
+<p>La agrupación en el eje horizontal se corresponde con una clasificación por sectores realizada ad-hoc. El tamaño del círculo se corresponde con el número de contactos. El eje vertical es el importe.</p>
+<p>En este caso, se dispone ya del código <a href="https://www.cnae.com.es/lista-actividades.php" target="_blank">CNAE</a> en los datos. Con este código, se ha realizado una agrupación por sectores, realizada ad-hoc:</p>
+<ul>
+<li>Sector primario y extracción: Grupos CNAE A y B: 0_CNAE</li>
+<li>Sector Industria-Alimentación: Grupos CNAE C_10 y 11: 1_CNAE</li>
+<li>Sector Industria_Motor. Grupo CNAE 29: 2_CNAE</li>
+<li>Otra Industria y construcción. Grupos CNAE Resto Grupo C + GrupoF: 3_CNAE</li>
+<li>Suministros y Energía: Grupos CNAE D y E: 4_CNAE</li>
+<li>Comercio, Transporte, Hostelería: Grupos CNAE G, H, I: 5_CNAE</li>
+<li>Servicios: Información, Artístico, Informática, Consultoría, Financieros: Grupos CNAE J, K, L, M, N, R: 6_CNAE</li>
+<li>Admon, Pública, Educación, Asociaciones, Extraterrit: Grupos CNAE O ,P, Q, S, U: 7_CNAE</li>
+</ul>
+<p>Con estos datos, se ha realizado un gráfico de dispersión con tres indicadores:</p>
+<ul>
+<li>Eje horizontal: es el sector con esta recodificación</li>
+<li>Eje vertical: son los ingresos en miles de euros de la entidad</li>
+<li>Eje z: El tamaño del círculo se corresponde con el número de contactos</li>
+</ul>
+<pre class="r"><code>library(readr)
+library(tidyverse)
+# compute new cnae (cs$CNAE, fus$CNAE, otri$CNAE)
+
+cnae2009 &lt;- read_csv(&quot;data/cnae2009.csv&quot;, 
+                    col_types = cols(CODINTEGR = col_skip(), 
+                     COD_CNAE2009 = col_character(), X4 = col_skip(), 
+                     X5 = col_skip()))
+
+#newcodes
+# cuatro cifras
+
+cnae4d&lt;- cnae2009[which(nchar(cnae2009$COD_CNAE2009)==4),]
+
+cnae4d$grupocnae &lt;- 
+      ifelse (cnae4d$COD_CNAE2009 &lt; 1000,
+            paste(&quot;0&quot;,cnae4d$COD_CNAE2009, sep=&quot;&quot;),
+      (ifelse((cnae4d$COD_CNAE2009 &gt;= 1000) &amp; (cnae4d$COD_CNAE2009 &lt; 1200), 
+            paste(&quot;1&quot;,cnae4d$COD_CNAE2009, sep=&quot;&quot;),
+      ifelse((cnae4d$COD_CNAE2009 &gt;= 1200) &amp; (cnae4d$COD_CNAE2009 &lt; 2900), 
+            paste(&quot;3&quot;,cnae4d$COD_CNAE2009, sep=&quot;&quot;),
+      ifelse((cnae4d$COD_CNAE2009 &gt;= 2900) &amp; (cnae4d$COD_CNAE2009 &lt; 3000), 
+            paste(&quot;2&quot;,cnae4d$COD_CNAE2009, sep=&quot;&quot;),
+      ifelse((cnae4d$COD_CNAE2009 &gt;= 3000) &amp; (cnae4d$COD_CNAE2009 &lt; 3500), 
+            paste(&quot;3&quot;,cnae4d$COD_CNAE2009, sep=&quot;&quot;),
+      ifelse((cnae4d$COD_CNAE2009 &gt;= 4110) &amp; (cnae4d$COD_CNAE2009 &lt; 4400), 
+            paste(&quot;3&quot;,cnae4d$COD_CNAE2009, sep=&quot;&quot;),
+      ifelse((cnae4d$COD_CNAE2009 &gt;= 3500) &amp; (cnae4d$COD_CNAE2009 &lt; 4000), 
+            paste(&quot;4&quot;,cnae4d$COD_CNAE2009, sep=&quot;&quot;), 
+      ifelse((cnae4d$COD_CNAE2009 &gt;= 4500) &amp; (cnae4d$COD_CNAE2009 &lt;= 5630), 
+            paste(&quot;5&quot;,cnae4d$COD_CNAE2009, sep=&quot;&quot;),
+      ifelse((cnae4d$COD_CNAE2009 &gt;= 5800) &amp; (cnae4d$COD_CNAE2009 &lt;= 8299), 
+            paste(&quot;6&quot;,cnae4d$COD_CNAE2009, sep=&quot;&quot;),       
+      ifelse((cnae4d$COD_CNAE2009 &gt;= 9000) &amp; (cnae4d$COD_CNAE2009 &lt; 9330), 
+            paste(&quot;6&quot;,cnae4d$COD_CNAE2009, sep=&quot;&quot;), 
+      ifelse((cnae4d$COD_CNAE2009 &gt;= 8400) &amp; (cnae4d$COD_CNAE2009 &lt;= 8899), 
+            paste(&quot;7&quot;,cnae4d$COD_CNAE2009, sep=&quot;&quot;),       
+      ifelse((cnae4d$COD_CNAE2009 &gt;=9400), 
+            paste(&quot;7&quot;,cnae4d$COD_CNAE2009, sep=&quot;&quot;),       0
+                    )))))))))))))
+
+cnae4d$nombregrupo &lt;- 
+      ifelse (cnae4d$COD_CNAE2009 &lt; 1000,
+            paste(&quot;Sector primario y extracción&quot;),
+      ifelse((cnae4d$COD_CNAE2009 &gt;= 1000) &amp; (cnae4d$COD_CNAE2009 &lt; 1200), 
+            paste(&quot;Sector Industria-Alimentación&quot;),
+      ifelse((cnae4d$COD_CNAE2009 &gt;= 1200) &amp; (cnae4d$COD_CNAE2009 &lt; 2900), 
+            paste(&quot;Otra Industria y construcción&quot;),
+      ifelse((cnae4d$COD_CNAE2009 &gt;= 2900) &amp; (cnae4d$COD_CNAE2009 &lt; 3000), 
+            paste(&quot;Sector Industria_Motor&quot;),
+      ifelse((cnae4d$COD_CNAE2009 &gt;= 3000) &amp; (cnae4d$COD_CNAE2009 &lt; 3500), 
+            paste(&quot;Otra Industria y construcción&quot;),
+      ifelse((cnae4d$COD_CNAE2009 &gt;= 4110) &amp; (cnae4d$COD_CNAE2009 &lt;= 4400), 
+            paste(&quot;Otra Industria y construcción&quot;),
+      ifelse((cnae4d$COD_CNAE2009 &gt;= 3500) &amp; (cnae4d$COD_CNAE2009 &lt;= 4000), 
+            paste(&quot;Suministros y Energía&quot;), 
+      ifelse((cnae4d$COD_CNAE2009 &gt;= 4500) &amp; (cnae4d$COD_CNAE2009 &lt;= 5630), 
+            paste(&quot;Comercio, Transporte, Hostelería&quot;),
+      ifelse((cnae4d$COD_CNAE2009 &gt;= 5800) &amp; (cnae4d$COD_CNAE2009 &lt;= 8299), 
+            paste(&quot;Servicios: Información, Artístico, Informática, Consultoría, Financieros&quot;),       
+      ifelse((cnae4d$COD_CNAE2009 &gt;= 9000) &amp; (cnae4d$COD_CNAE2009 &lt; 9330), 
+            paste(&quot;Servicios: Información, Artístico, Informática, Consultoría, Financieros&quot;), 
+      ifelse((cnae4d$COD_CNAE2009 &gt;= 8400) &amp; (cnae4d$COD_CNAE2009 &lt;= 8899), 
+            paste(&quot;Admon. Pública, Educación, Asociaciones, Extraterrit&quot;),       
+      ifelse((cnae4d$COD_CNAE2009 &gt;=9400), 
+            paste(&quot;Admon. Pública, Educación, Asociaciones, Extraterrit&quot;), 0
+            ))))))))))))
+rm(cnae2009)
+
+# Mapa Cs
+cs &lt;- read_csv(&quot;data/ConsejoSocial_datosoriginales.csv&quot;, 
+               locale = locale(asciify = TRUE), na = &quot;empty&quot;)
+# Hay algunos códigos cnae de 3 cifras incorrectos?
+
+cnae3&lt;- cs[which(nchar(cs$CNAE)&lt;4),] # Localiza códigos de 3 cifras
+cs[which(cs$CNAE==&quot;812&quot;),4]&lt;-&quot;8121&quot;
+rm(cnae3)
+names(cs)&lt;- c(&quot;razon&quot;, &quot;nombre&quot;, &quot;cif&quot;, &quot;cnae&quot;, &quot;ntrabaj&quot;, 
+                        &quot;totaling&quot;, &quot;ingUPNA&quot;, &quot;tipo&quot;, &quot;tipo_10&quot;, &quot;contacto&quot;, &quot;aclaraciones&quot;)
+l&lt;-length(table(cs$cif)) #Comprobamos que cada fila es una empresa: no lo es
+# hay bastantes perdidos: seleccionamos filas completas
+cs_completos&lt;- cs[complete.cases(cs), ]
+
+l2&lt;-length(table(cs_completos$cif)) #Comprobamos que cada fila es una empresa: sí lo es
+
+# Completa los códigos
+for (i in 1:length(cs_completos$cif)) {
+      cs_completos[i, 12]&lt;- cnae4d[grep(as.numeric(cs_completos[i,4]),cnae4d$grupocnae),3]
+}
+
+
+for (i in 1:length(cs_completos$cif)) {
+      cs_completos[i, 13]&lt;- cnae4d[grep(as.numeric(cs_completos[i,4]),cnae4d$grupocnae),4]
+}
+
+cs_completos$grupocnae &lt;- as.numeric(cs_completos$grupocnae)
+
+cs_completos$ingresos &lt;- cs_completos$totaling/1000
+
+
+# Variable X: grupocnae
+# Variable Y: totaling
+# https://plot.ly/r/getting-started/
+
+library(devtools)
+# devtools::install_github(&quot;ropensci/plotly&quot;)
+library(plotly)
+library(&quot;ggsci&quot;)
+Sys.setenv(&quot;plotly_username&quot;=&quot;mcortinas&quot;)
+Sys.setenv(&quot;plotly_api_key&quot;=&quot;yJb8VBxhRqDRAOesNWRT&quot;)
+
+p &lt;- ggplot(cs_completos, aes(x = grupocnae, y = ingresos)) +
+      geom_point(aes(size = ntrabaj, color=tipo, alpha=3/4, 
+                     text = paste(&quot;Nombre:&quot;, cs_completos$nombre))) +
+      labs( title=&quot;Mapa de Relaciones Consejo Social&quot; , subtitle = &quot;(Solo datos completos)&quot;) +
+      scale_y_continuous(name=&quot;Ingresos (miles de euros)&quot;)+
+      scale_x_continuous(name=&quot;Sector&quot;, limits=c(0,80000), breaks=c(500,12000,22000,32000, 43000,54000,66000,78000),
+                         labels=c(&quot;Sector primario y extracción&quot;, &quot;Sector Industria-Alimentación&quot;, &quot;Sector Industria_Motor&quot;,
+                                  &quot;Otra Industria y construcción&quot;, &quot;Suministros y Energía&quot;, &quot;Comercio, Transporte, Hostelería&quot;,
+                                  &quot;Servicios: Banca, Informática, Consultoría...&quot;,
+                                  &quot;Admon. Pública, Educación...&quot;))+
+      scale_color_lancet()+
+      theme_bw()
+
+gg &lt;- ggplotly(p)
+l &lt;- list(
+      font = list(
+            family = &quot;sans-serif&quot;,
+            size = 16,
+            color = &quot;#000&quot;),
+      x = 0.05, 
+      y = 0.95, 
+      orientation = &#39;h&#39;,
+      bordercolor = &quot;#E2E2E2&quot;,
+      borderwidth = 2)
+
+l2 &lt;- list(source = &quot;http://www.unavarra.es/css/bitmaps/upna30-iberus.png?raw=true&quot;,
+           xref = &quot;x&quot;,
+           yref = &quot;y&quot;,
+           x = 0.9,
+           y = 3.1,
+           sizex = 2,
+           sizey = 2,
+           sizing = &quot;stretch&quot;,
+           opacity = 0.4,
+           layer = &quot;below&quot;
+      )
+layout(gg, legend = l, images = l2)</code></pre>
+<div id="26886764287d" style="width:672px;height:480px;" class="plotly html-widget"></div>
+<script type="application/json" data-for="26886764287d">{"x":{"data":[{"x":[67219,67022,32059,32612,22932,11013,78731,54669,67112,67112,67490,32594,32822,22932,78690,67490,66209,78812,67112,32222,67022,66201,67211,32561,54791,22910,32815,78812,54941,54941,22932,54633,33230],"y":[303.973,2109.644,188.259,15117.216,6628.956,45355.236,13833,5414.017,72.559,34.616,5533.226,10991.18,51155.91,97533,4111.545,257.32,730.625,1819303,3910.972,28964.955,18.6,106.623,162.903,51229.163,479.724,280754,237089,30109.661,27.809,103641,450424,193938,37.659],"text":["ntrabaj:     5<br />tipo: ClubsCEO<br />3/4: 0.75<br />Nombre: Anteral<br />grupocnae: 67219<br />ingresos:     303.973","ntrabaj:    50<br />tipo: ClubsCEO<br />3/4: 0.75<br />Nombre: Biko<br />grupocnae: 67022<br />ingresos:    2109.644","ntrabaj:     9<br />tipo: ClubsCEO<br />3/4: 0.75<br />Nombre: Das-nano<br />grupocnae: 32059<br />ingresos:     188.259","ntrabaj:   101<br />tipo: ClubsCEO<br />3/4: 0.75<br />Nombre: Electrónica Falcón<br />grupocnae: 32612<br />ingresos:   15117.216","ntrabaj:    36<br />tipo: ClubsCEO<br />3/4: 0.75<br />Nombre: FRENELSA<br />grupocnae: 22932<br />ingresos:    6628.956","ntrabaj:    50<br />tipo: ClubsCEO<br />3/4: 0.75<br />Nombre: Embutidos Goikoa S.A.<br />grupocnae: 11013<br />ingresos:   45355.236","ntrabaj:   455<br />tipo: ClubsCEO<br />3/4: 0.75<br />Nombre: Amma Navarra S.L.<br />grupocnae: 78731<br />ingresos:   13833.000","ntrabaj:    34<br />tipo: ClubsCEO<br />3/4: 0.75<br />Nombre: GM Vending S.A.<br />grupocnae: 54669<br />ingresos:    5414.017","ntrabaj:     3<br />tipo: ClubsCEO<br />3/4: 0.75<br />Nombre: ID Ingeniería Acústica<br />grupocnae: 67112<br />ingresos:      72.559","ntrabaj:     6<br />tipo: ClubsCEO<br />3/4: 0.75<br />Nombre: IAR<br />grupocnae: 67112<br />ingresos:      34.616","ntrabaj:    43<br />tipo: ClubsCEO<br />3/4: 0.75<br />Nombre: Irumold<br />grupocnae: 67490<br />ingresos:    5533.226","ntrabaj:    65<br />tipo: ClubsCEO<br />3/4: 0.75<br />Nombre: Industrias Laneko S.A.L.<br />grupocnae: 32594<br />ingresos:   10991.180","ntrabaj:   250<br />tipo: ClubsCEO<br />3/4: 0.75<br />Nombre: Liebherr Industrias Metálicas S.A.<br />grupocnae: 32822<br />ingresos:   51155.910","ntrabaj:   400<br />tipo: ClubsCEO<br />3/4: 0.75<br />Nombre: Mapsa<br />grupocnae: 22932<br />ingresos:   97533.000","ntrabaj:    71<br />tipo: ClubsCEO<br />3/4: 0.75<br />Nombre: Mutua Navarra<br />grupocnae: 78690<br />ingresos:    4111.545","ntrabaj:     3<br />tipo: ClubsCEO<br />3/4: 0.75<br />Nombre: Nadetech<br />grupocnae: 67490<br />ingresos:     257.320","ntrabaj:     8<br />tipo: ClubsCEO<br />3/4: 0.75<br />Nombre: Naudit<br />grupocnae: 66209<br />ingresos:     730.625","ntrabaj: 23726<br />tipo: ClubsCEO<br />3/4: 0.75<br />Nombre: ONCE<br />grupocnae: 78812<br />ingresos: 1819303.000","ntrabaj:    55<br />tipo: ClubsCEO<br />3/4: 0.75<br />Nombre: Orbital Aeroespace Systems<br />grupocnae: 67112<br />ingresos:    3910.972","ntrabaj:   200<br />tipo: ClubsCEO<br />3/4: 0.75<br />Nombre: Papeles el Carmen<br />grupocnae: 32222<br />ingresos:   28964.955","ntrabaj:     2<br />tipo: ClubsCEO<br />3/4: 0.75<br />Nombre: Tangle Research S.L.<br />grupocnae: 67022<br />ingresos:      18.600","ntrabaj:     2<br />tipo: ClubsCEO<br />3/4: 0.75<br />Nombre: QUOMAI<br />grupocnae: 66201<br />ingresos:     106.623","ntrabaj:     4<br />tipo: ClubsCEO<br />3/4: 0.75<br />Nombre: Recombina Biotech<br />grupocnae: 67211<br />ingresos:     162.903","ntrabaj:    68<br />tipo: ClubsCEO<br />3/4: 0.75<br />Nombre: Replasa<br />grupocnae: 32561<br />ingresos:   51229.163","ntrabaj:     1<br />tipo: ClubsCEO<br />3/4: 0.75<br />Nombre: Rypples Media<br />grupocnae: 54791<br />ingresos:     479.724","ntrabaj:   450<br />tipo: ClubsCEO<br />3/4: 0.75<br />Nombre: SAS-Automotive<br />grupocnae: 22910<br />ingresos:  280754.000","ntrabaj:   392<br />tipo: ClubsCEO<br />3/4: 0.75<br />Nombre: SKF España S.A.<br />grupocnae: 32815<br />ingresos:  237089.000","ntrabaj:   796<br />tipo: ClubsCEO<br />3/4: 0.75<br />Nombre: Tasubinsa<br />grupocnae: 78812<br />ingresos:   30109.661","ntrabaj:     2<br />tipo: ClubsCEO<br />3/4: 0.75<br />Nombre: Traperos de Emaus<br />grupocnae: 54941<br />ingresos:      27.809","ntrabaj:   118<br />tipo: ClubsCEO<br />3/4: 0.75<br />Nombre: Truck & Wheel<br />grupocnae: 54941<br />ingresos:  103641.000","ntrabaj:  1993<br />tipo: ClubsCEO<br />3/4: 0.75<br />Nombre: TRW<br />grupocnae: 22932<br />ingresos:  450424.000","ntrabaj:   110<br />tipo: ClubsCEO<br />3/4: 0.75<br />Nombre: Urzante<br />grupocnae: 54633<br />ingresos:  193938.000","ntrabaj:     2<br />tipo: ClubsCEO<br />3/4: 0.75<br />Nombre: Velites Sport<br />grupocnae: 33230<br />ingresos:      37.659"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(0,70,139,1)","opacity":0.55,"size":[4.02490487174596,4.63834815347308,4.12654348256118,5.00641412250935,4.50536343847593,4.63834815347308,6.39368859153069,4.48432023145097,3.95303552080815,4.0538677347116,4.57464092746588,4.7610368098185,5.71552190113504,6.23023155014467,4.80601450378903,3.95303552080815,4.10413123243377,22.6771653543307,4.68110137487701,5.51026404181996,3.90221621540054,3.90221621540054,3.99203054535775,4.78377749234943,3.77952755905512,6.37925357764525,6.20553868862058,7.23882554921106,3.90221621540054,5.10660828316872,9.25534646954912,5.06043473646773,3.90221621540054],"symbol":"circle","line":{"width":1.88976377952756,"color":"rgba(0,70,139,1)"}},"hoveron":"points","name":"ClubsCEO","legendgroup":"ClubsCEO","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[66910,66420,34121,66203,11013,66910,55221,66202,54669,11021,32751,66622,66499,66499,65813,32512,54631,43519,11083,54639,11089,54651,67112,78411,32829,32120,54646,66202,65811,32849,54633,32712,66110,66209,66399,11089],"y":[376.725,246291,98986.517,5358.445,210.824,3673.183,40683.231,134.274,50988,3355.654,1594220,32227.52,646.613,10019.485,24516.162,982.407,62432,972375,145.419,89538.064,9032.759,541980,751.315,11390.139,30040.378,374306,70346.888,3653.99,7.127,441.853,12100.866,1068155,7748154,55073.185,24100.166,194048],"text":["ntrabaj:     4<br />tipo: Otros<br />3/4: 0.75<br />Nombre: Ábaco Consultoría Legal Tributaria y Financiera<br />grupocnae: 66910<br />ingresos:     376.725","ntrabaj:   270<br />tipo: Otros<br />3/4: 0.75<br />Nombre: Acciona<br />grupocnae: 66420<br />ingresos:  246291.000","ntrabaj:   210<br />tipo: Otros<br />3/4: 0.75<br />Nombre: Construcciones ACR S.A.<br />grupocnae: 34121<br />ingresos:   98986.517","ntrabaj:   100<br />tipo: Otros<br />3/4: 0.75<br />Nombre: ANIMSA<br />grupocnae: 66203<br />ingresos:    5358.445","ntrabaj:   616<br />tipo: Otros<br />3/4: 0.75<br />Nombre: Argal<br />grupocnae: 11013<br />ingresos:     210.824","ntrabaj:    52<br />tipo: Otros<br />3/4: 0.75<br />Nombre: Arpa Abogados<br />grupocnae: 66910<br />ingresos:    3673.183","ntrabaj:   103<br />tipo: Otros<br />3/4: 0.75<br />Nombre: AUDENASA<br />grupocnae: 55221<br />ingresos:   40683.231","ntrabaj:     4<br />tipo: Otros<br />3/4: 0.75<br />Nombre: Axium Soluciones S.L.<br />grupocnae: 66202<br />ingresos:     134.274","ntrabaj:   242<br />tipo: Otros<br />3/4: 0.75<br />Nombre: Azkoyen S.A.<br />grupocnae: 54669<br />ingresos:   50988.000","ntrabaj:    15<br />tipo: Otros<br />3/4: 0.75<br />Nombre: Bodegas Piedemonte<br />grupocnae: 11021<br />ingresos:    3355.654","ntrabaj:  3996<br />tipo: Otros<br />3/4: 0.75<br />Nombre: BSH<br />grupocnae: 32751<br />ingresos: 1594220.000","ntrabaj:   242<br />tipo: Otros<br />3/4: 0.75<br />Nombre: Caja Laboral<br />grupocnae: 66622<br />ingresos:   32227.520","ntrabaj:    12<br />tipo: Otros<br />3/4: 0.75<br />Nombre: Clave Mayor<br />grupocnae: 66499<br />ingresos:     646.613","ntrabaj:    11<br />tipo: Otros<br />3/4: 0.75<br />Nombre: Corporación Pública Empresarial de Navarra<br />grupocnae: 66499<br />ingresos:   10019.485","ntrabaj:   150<br />tipo: Otros<br />3/4: 0.75<br />Nombre: Diario de Navarra<br />grupocnae: 65813<br />ingresos:   24516.162","ntrabaj:    31<br />tipo: Otros<br />3/4: 0.75<br />Nombre: Exkal<br />grupocnae: 32512<br />ingresos:     982.407","ntrabaj:    58<br />tipo: Otros<br />3/4: 0.75<br />Nombre: Florette<br />grupocnae: 54631<br />ingresos:   62432.000","ntrabaj:  1758<br />tipo: Otros<br />3/4: 0.75<br />Nombre: Gamesa Eólica S.L.<br />grupocnae: 43519<br />ingresos:  972375.000","ntrabaj:     4<br />tipo: Otros<br />3/4: 0.75<br />Nombre: GM Quickafe S.L.<br />grupocnae: 11083<br />ingresos:     145.419","ntrabaj:   126<br />tipo: Otros<br />3/4: 0.75<br />Nombre: Grupo Riberebro<br />grupocnae: 54639<br />ingresos:   89538.064","ntrabaj:     6<br />tipo: Otros<br />3/4: 0.75<br />Nombre: Harivenasa<br />grupocnae: 11089<br />ingresos:    9032.759","ntrabaj:  2368<br />tipo: Otros<br />3/4: 0.75<br />Nombre: Informática el Corte Inglés<br />grupocnae: 54651<br />ingresos:  541980.000","ntrabaj:     7<br />tipo: Otros<br />3/4: 0.75<br />Nombre: Ingeniería Proyectos Navarra, S.L.<br />grupocnae: 67112<br />ingresos:     751.315","ntrabaj:   201<br />tipo: Otros<br />3/4: 0.75<br />Nombre: INTIA<br />grupocnae: 78411<br />ingresos:   11390.139","ntrabaj:   202<br />tipo: Otros<br />3/4: 0.75<br />Nombre: Jofemar S.A.U<br />grupocnae: 32829<br />ingresos:   30040.378","ntrabaj:   878<br />tipo: Otros<br />3/4: 0.75<br />Nombre: Laboratorios Cinfa S.A.<br />grupocnae: 32120<br />ingresos:  374306.000","ntrabaj:    64<br />tipo: Otros<br />3/4: 0.75<br />Nombre: NAFARCO<br />grupocnae: 54646<br />ingresos:   70346.888","ntrabaj:    80<br />tipo: Otros<br />3/4: 0.75<br />Nombre: Openbravo<br />grupocnae: 66202<br />ingresos:    3653.990","ntrabaj:     2<br />tipo: Otros<br />3/4: 0.75<br />Nombre: Polygon Education, S.L.<br />grupocnae: 65811<br />ingresos:       7.127","ntrabaj:     5<br />tipo: Otros<br />3/4: 0.75<br />Nombre: Proyectos Tecnológicos de Navarra<br />grupocnae: 32849<br />ingresos:     441.853","ntrabaj:    68<br />tipo: Otros<br />3/4: 0.75<br />Nombre: Quesos Aldanondo S.A.U.<br />grupocnae: 54633<br />ingresos:   12100.866","ntrabaj:  2200<br />tipo: Otros<br />3/4: 0.75<br />Nombre: Schneider Electric<br />grupocnae: 32712<br />ingresos: 1068155.000","ntrabaj: 21874<br />tipo: Otros<br />3/4: 0.75<br />Nombre: Telefónica España<br />grupocnae: 66110<br />ingresos: 7748154.000","ntrabaj:   200<br />tipo: Otros<br />3/4: 0.75<br />Nombre: Thomson Reuters<br />grupocnae: 66209<br />ingresos:   55073.185","ntrabaj:   350<br />tipo: Otros<br />3/4: 0.75<br />Nombre: TRACASA<br />grupocnae: 66399<br />ingresos:   24100.166","ntrabaj:   630<br />tipo: Otros<br />3/4: 0.75<br />Nombre: Viscofan<br />grupocnae: 11089<br />ingresos:  194048.000"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(237,0,0,1)","opacity":0.55,"size":[3.99203054535775,5.79177113787016,5.55321688831536,5.00026427644699,6.82210729234804,4.65569981734004,5.01862224969672,3.99203054535775,5.68416769341087,4.23858647634334,11.5341882899576,5.68416769341087,4.18643979818574,4.16750315617232,5.27713346615516,4.45152100535899,4.70580660154889,8.92221690778114,3.99203054535775,5.1512284373375,4.0538677347116,9.74855450144411,4.08005216432908,5.51460717658541,5.51893946701852,7.41285222238432,4.75333857919108,4.87000818945246,3.90221621540054,4.02490487174596,4.78377749234943,9.5328276176705,21.9245949988946,5.51026404181996,6.07154080774065,6.85654340610347],"symbol":"circle","line":{"width":1.88976377952756,"color":"rgba(237,0,0,1)"}},"hoveron":"points","name":"Otros","legendgroup":"Otros","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null}],"layout":{"margin":{"t":43.7625570776256,"r":7.30593607305936,"b":40.1826484018265,"l":54.7945205479452},"plot_bgcolor":"rgba(255,255,255,1)","paper_bgcolor":"rgba(255,255,255,1)","font":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187},"title":"Mapa de Relaciones Consejo Social","titlefont":{"color":"rgba(0,0,0,1)","family":"","size":17.5342465753425},"xaxis":{"domain":[0,1],"type":"linear","autorange":false,"range":[-4000,84000],"tickmode":"array","ticktext":["Sector primario y extracción","Sector Industria-Alimentación","Sector Industria_Motor","Otra Industria y construcción","Suministros y Energía","Comercio, Transporte, Hostelería","Servicios: Banca, Informática, Consultoría...","Admon. Pública, Educación..."],"tickvals":[500,12000,22000,32000,43000,54000,66000,78000],"categoryorder":"array","categoryarray":["Sector primario y extracción","Sector Industria-Alimentación","Sector Industria_Motor","Otra Industria y construcción","Suministros y Energía","Comercio, Transporte, Hostelería","Servicios: Banca, Informática, Consultoría...","Admon. Pública, Educación..."],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.65296803652968,"tickwidth":0.66417600664176,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.689497716895},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(235,235,235,1)","gridwidth":0.66417600664176,"zeroline":false,"anchor":"y","title":"Sector","titlefont":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187},"hoverformat":".2f"},"yaxis":{"domain":[0,1],"type":"linear","autorange":false,"range":[-387400.21665,8135561.34365],"tickmode":"array","ticktext":["0e+00","2e+06","4e+06","6e+06","8e+06"],"tickvals":[0,2000000,4000000,6000000,8000000],"categoryorder":"array","categoryarray":["0e+00","2e+06","4e+06","6e+06","8e+06"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.65296803652968,"tickwidth":0.66417600664176,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.689497716895},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(235,235,235,1)","gridwidth":0.66417600664176,"zeroline":false,"anchor":"x","title":"Ingresos (miles de euros)","titlefont":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187},"hoverformat":".2f"},"shapes":[{"type":"rect","fillcolor":"transparent","line":{"color":"rgba(51,51,51,1)","width":0.66417600664176,"linetype":"solid"},"yref":"paper","xref":"paper","x0":0,"x1":1,"y0":0,"y1":1}],"showlegend":true,"legend":{"bgcolor":"rgba(255,255,255,1)","bordercolor":"#E2E2E2","borderwidth":2,"font":{"color":"#000","family":"sans-serif","size":16},"y":0.95,"x":0.05,"orientation":"h"},"annotations":[{"text":"3/4<br />ntrabaj<br />tipo","x":1.02,"y":1,"showarrow":false,"ax":0,"ay":0,"font":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187},"xref":"paper","yref":"paper","textangle":-0,"xanchor":"left","yanchor":"bottom","legendTitle":true}],"hovermode":"closest","barmode":"relative","images":[{"source":"http://www.unavarra.es/css/bitmaps/upna30-iberus.png?raw=true","xref":"x","yref":"y","x":0.9,"y":3.1,"sizex":2,"sizey":2,"sizing":"stretch","opacity":0.4,"layer":"below"}]},"config":{"doubleClick":"reset","modeBarButtonsToAdd":[{"name":"Collaborate","icon":{"width":1000,"ascent":500,"descent":-50,"path":"M487 375c7-10 9-23 5-36l-79-259c-3-12-11-23-22-31-11-8-22-12-35-12l-263 0c-15 0-29 5-43 15-13 10-23 23-28 37-5 13-5 25-1 37 0 0 0 3 1 7 1 5 1 8 1 11 0 2 0 4-1 6 0 3-1 5-1 6 1 2 2 4 3 6 1 2 2 4 4 6 2 3 4 5 5 7 5 7 9 16 13 26 4 10 7 19 9 26 0 2 0 5 0 9-1 4-1 6 0 8 0 2 2 5 4 8 3 3 5 5 5 7 4 6 8 15 12 26 4 11 7 19 7 26 1 1 0 4 0 9-1 4-1 7 0 8 1 2 3 5 6 8 4 4 6 6 6 7 4 5 8 13 13 24 4 11 7 20 7 28 1 1 0 4 0 7-1 3-1 6-1 7 0 2 1 4 3 6 1 1 3 4 5 6 2 3 3 5 5 6 1 2 3 5 4 9 2 3 3 7 5 10 1 3 2 6 4 10 2 4 4 7 6 9 2 3 4 5 7 7 3 2 7 3 11 3 3 0 8 0 13-1l0-1c7 2 12 2 14 2l218 0c14 0 25-5 32-16 8-10 10-23 6-37l-79-259c-7-22-13-37-20-43-7-7-19-10-37-10l-248 0c-5 0-9-2-11-5-2-3-2-7 0-12 4-13 18-20 41-20l264 0c5 0 10 2 16 5 5 3 8 6 10 11l85 282c2 5 2 10 2 17 7-3 13-7 17-13z m-304 0c-1-3-1-5 0-7 1-1 3-2 6-2l174 0c2 0 4 1 7 2 2 2 4 4 5 7l6 18c0 3 0 5-1 7-1 1-3 2-6 2l-173 0c-3 0-5-1-8-2-2-2-4-4-4-7z m-24-73c-1-3-1-5 0-7 2-2 3-2 6-2l174 0c2 0 5 0 7 2 3 2 4 4 5 7l6 18c1 2 0 5-1 6-1 2-3 3-5 3l-174 0c-3 0-5-1-7-3-3-1-4-4-5-6z"},"click":"function(gd) { \n        // is this being viewed in RStudio?\n        if (location.search == '?viewer_pane=1') {\n          alert('To learn about plotly for collaboration, visit:\\n https://cpsievert.github.io/plotly_book/plot-ly-for-collaboration.html');\n        } else {\n          window.open('https://cpsievert.github.io/plotly_book/plot-ly-for-collaboration.html', '_blank');\n        }\n      }"}],"cloud":false},"source":"A","attrs":{"2688fdb77f1":{"size":{},"colour":{},"alpha":{},"text":{},"x":{},"y":{},"type":"scatter"}},"cur_data":"2688fdb77f1","visdat":{"2688fdb77f1":["function (y) ","x"]},"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1}},"base_url":"https://plot.ly"},"evals":["config.modeBarButtonsToAdd.0.click"],"jsHooks":{"render":[{"code":"function(el, x) { var ctConfig = crosstalk.var('plotlyCrosstalkOpts').set({\"on\":\"plotly_click\",\"persistent\":false,\"dynamic\":false,\"selectize\":false,\"opacityDim\":0.2,\"selected\":{\"opacity\":1}}); }","data":null}]}}</script>
+<p>Se puede hacer zoom sobre el mapa seleccionando cualquier cuadrante. “Reset zoom” devuelve el mapa a su tamaño original. También se puede seleccionar los tipos de relación (prácticas curriculares, extracurriculares o procesos de selección) pulsando sobre la leyenda del mapa.</p>
+<p>Se incluyen otros datos como el nombre y el tipo de relación.</p>
+<p><a href="maps/mapacs.html" target="_blank">Acceder en pantalla completa al mapa</a></p>
+
+<hr>
+
+<img src="images/upna.png" width="100">
+<p>Abril, 2018</p>
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
