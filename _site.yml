@@ -6,16 +6,11 @@ navbar:
   - text: Inicio
     icon: fa-home
     href: index.html
-  - text: Mapa OTRI
-    menu:
-      - text: Info
-        href: otri.html
-      - text: Mapa
-        icon: fa-chart-area
-        href: maps/mapaotri.html
-  - text: Mapa FUS
+  - text: Datos OTRI
+    href: otri.html
+  - text: Datos FUS
     href: fus.html
-  - text: Mapa CS
+  - text: Datos CS
     href: cs.html
   - text: General
     href: general.html
@@ -24,8 +19,10 @@ navbar:
     href: siguiente.html
 output:
   html_document:
+    include:
+      after_body: footer.html
     code_folding: hide
-    theme: yeti
+    theme: cerulean
     highlight: textmate
     lib_dir: site_libs
     self_contained: no
